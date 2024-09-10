@@ -11,10 +11,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
-    private val repository = CharacterRepositoryImpl()
-    private val getCharacterListUseCase = GetCharacterListUseCase(repository)
-    private val getCharacterByIdUseCase = GetCharacterByIdUseCase(repository)
+class MainViewModel(
+    private val repository : CharacterRepositoryImpl,
+    private val getCharacterListUseCase :GetCharacterListUseCase,
+    private val getCharacterByIdUseCase : GetCharacterByIdUseCase,
+): ViewModel(){
+
 
     private var _character: MutableStateFlow<CharacterModel> =
         MutableStateFlow(CharacterModel())
