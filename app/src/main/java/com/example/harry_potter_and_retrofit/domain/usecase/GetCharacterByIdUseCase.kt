@@ -7,7 +7,7 @@ class GetCharacterByIdUseCase(
     private val repository: CharacterRepository
 ) {
 
-    suspend fun getCharacterById(id:Int):CharacterModel{
+    suspend fun getCharacterById(id:Int = 1):CharacterModel{
         return repository.getCharacterById(id)
     }
 

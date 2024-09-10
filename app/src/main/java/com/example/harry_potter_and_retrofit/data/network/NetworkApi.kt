@@ -1,21 +1,25 @@
 package com.example.harry_potter_and_retrofit.data.network
 
 import com.example.harry_potter_and_retrofit.data.network.dto.CharacterDataTransferObject
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
+import java.util.concurrent.TimeUnit
 
 
-const val BASE_URL = "https://harry-potter-api-en.onrender.com/characters"
+const val BASE_URL = "https://harry-potter-api-en.onrender.com/"
 
 interface SearchCharactersApi {
 
-    @GET()
+    @GET("characters")
     suspend fun getCharacters(): List<CharacterDataTransferObject>
 
-    @GET()
-    suspend fun getCharactersById(@Query("id") id: Int = 1): CharacterDataTransferObject
+    @GET("characters/{id}")
+    suspend fun getCharactersById(@Path("id") id: Int = 1): CharacterDataTransferObject
 
     // @GET("/{id}")
     // suspend fun getCharactersByIdPath(@Path("id") id: Int = 1)
