@@ -51,6 +51,10 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.10.1")
 
+    implementation("com.squareup.okhttp3:okhttp:4.7.2")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.7.2")
+
+    implementation("io.coil-kt:coil:0.13.0")
 
 
     implementation(libs.androidx.core.ktx)

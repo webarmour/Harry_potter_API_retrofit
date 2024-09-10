@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Harry_potter_and_retrofit</string>
+    <string name="random">Random</string>
 </resources>
