@@ -1,14 +1,10 @@
 package com.example.harry_potter_and_retrofit.data.network
 
 import com.example.harry_potter_and_retrofit.data.network.dto.CharacterDataTransferObject
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
-import java.util.concurrent.TimeUnit
 
 
 const val BASE_URL = "https://harry-potter-api-en.onrender.com/"
