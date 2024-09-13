@@ -56,6 +56,9 @@ dependencies {
 
     implementation("io.coil-kt:coil:0.13.0")
 
+    implementation("androidx.room:room-runtime:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
