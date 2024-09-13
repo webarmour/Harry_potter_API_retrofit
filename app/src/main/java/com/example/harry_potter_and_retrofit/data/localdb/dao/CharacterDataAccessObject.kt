@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.harry_potter_and_retrofit.data.localdb.dbmodel.CharacterDbModel
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
@@ -17,7 +18,7 @@ interface CharacterDataAccessObject {
     suspend fun insertCharacter(character: CharacterDbModel)
 
     @Query("SELECT * FROM character")
-    suspend fun getAllCharacters(): List<CharacterDbModel>
+    fun getAllCharacters(): Flow<List<CharacterDbModel>>
 
     @Update
     suspend fun editCharacter(character: CharacterDbModel)
