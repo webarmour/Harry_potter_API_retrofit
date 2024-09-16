@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation
+package com.example.harry_potter_and_retrofit.presentation.mainfragment
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -7,6 +7,7 @@ import com.example.harry_potter_and_retrofit.data.network.CharacterRepositoryImp
 import com.example.harry_potter_and_retrofit.domain.model.CharacterModel
 import com.example.harry_potter_and_retrofit.domain.usecase.GetCharacterByIdUseCase
 import com.example.harry_potter_and_retrofit.domain.usecase.GetCharacterListUseCase
+import com.example.harry_potter_and_retrofit.presentation.ProgressState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

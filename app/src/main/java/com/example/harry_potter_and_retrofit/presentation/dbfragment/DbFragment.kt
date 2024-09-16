@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation
+package com.example.harry_potter_and_retrofit.presentation.dbfragment
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
-import com.example.harry_potter_and_retrofit.R
 import com.example.harry_potter_and_retrofit.databinding.FragmentDbBinding
-import kotlinx.coroutines.launch
 
 class DbFragment : Fragment() {
+
+
+
 
     companion object {
         fun newInstance() = DbFragment()
@@ -23,8 +23,6 @@ class DbFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
     }
 
     override fun onCreateView(
@@ -38,19 +36,27 @@ class DbFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.initDao(requireActivity().application)
+        val applicationSingleton = requireActivity().application
+
+
         binding.btAdd.setOnClickListener {
             viewModel.onBtnAdd()
         }
         binding.btUpdate.setOnClickListener {
-
+            viewModel.btUpdate()
         }
         binding.btDelete.setOnClickListener {
-
+            viewModel.btDelete()
         }
-        lifecycleScope.launch {
-            viewModel.allCharacters.collect{
-                binding.textView.text = it.joinToString(separator = "\r\n")
-            }
+//        lifecycleScope.launch {
+//            viewModel.characters.collect{
+//                binding.textView.text = it.joinToString(separator = "\r\n")
+//            }
+//        }
+        binding.btUpdate.setOnClickListener {
+            viewModel.btUpdate()
         }
 
 

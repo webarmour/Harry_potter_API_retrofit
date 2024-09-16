@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation
+package com.example.harry_potter_and_retrofit.presentation.mainfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.example.harry_potter_and_retrofit.databinding.FragmentMainBinding
+import com.example.harry_potter_and_retrofit.presentation.ProgressState
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import kotlinx.coroutines.launch
 
-class MainFragment : Fragment() {
+class MainFragment(
+) : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -32,6 +35,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.character.collect {
                 binding.tvName.text = it.character
@@ -51,8 +56,24 @@ class MainFragment : Fragment() {
         }
 
         binding.btRandom.setOnClickListener {
-            viewModel.getRandomCharacter()
+            FirebaseCrashlytics.getInstance().log("This log method with extra info")
+            try {
+                throw Exception("Kok issue")
+            } catch(e: Exception){
+                FirebaseCrashlytics.getInstance().recordException(e)
+            }
+
+//            viewModel.getRandomCharacter()
+
         }
+        binding.tvHouse.setOnClickListener {
+
+        }
+
+        binding.tvHouse.setOnClickListener {
+
+        }
+
 
     }
 
@@ -61,9 +82,6 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
-    companion object {
-        fun newInstance() = MainFragment()
 
 
-    }
 }

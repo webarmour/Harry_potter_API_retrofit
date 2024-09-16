@@ -1,4 +1,30 @@
 <resources>
-    <string name="app_name">Harry_potter_and_retrofit</string>
+    <string name="app_name">Harry Potter App</string>
     <string name="random">Random</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reception_of_azkaban">Reception of Azkaban</string>
+    <string name="dementors_rest_room">Dementors Rest Room</string>
+    <string name="welcome_to_cage">Welcome to Cage!</string>
+    <string name="title_character">Character</string>
+    <string name="list_of_characters">List of characters</string>
+    <string name="checkbox_only_slytherin">Only Slytherin</string>
+    <string name="sign_in_auth">Sign in</string>
+    <string name="sign_up_auth">Sign up</string>
+    <string name="sign_out_auth">Sign out</string>
+    <string name="authentication_title">Account</string>
+    <string name="button_string">APPLY</string>
+    <string name="forgot_pass_string"><u>Reset password?</u></string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="tv_sign_up">Please, sign up</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="tv_sign_in">Please, sign in</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="message_user_creation_failed">User creation failed</string>
+    <string name="message_user_verification_success">Verification success. Check your email</string>
+    <string name="message_user_verification_failed">Verification failed</string>
+    <string name="msg_sign_in">Sign in successful</string>
+    <string name="msg_sign_in_error">Sign in error! Check your info</string>
+    <string name="sign_out_message">Sign out successful</string>
 </resources>
