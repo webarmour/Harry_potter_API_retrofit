@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1018238771754",
+    "project_id": "harrypotterapp-dff9e",
+    "storage_bucket": "harrypotterapp-dff9e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018238771754:android:c563594b443d3e178bd953",
+        "android_client_info": {
+          "package_name": "com.example.harry_potter_and_retrofit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrh9b6AlXYc_rQdw7PTL3Be5J6680ufSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
