@@ -48,14 +48,6 @@
                 android:orientation="horizontal"
                 android:padding="3dp">
 
-                <ImageButton
-                    android:id="@+id/im_attach"
-                    android:layout_width="49dp"
-                    android:layout_height="45dp"
-                    android:layout_weight="1"
-                    android:background="@color/gray"
-                    app:srcCompat="@drawable/ic_file" />
-
                 <EditText
                     android:id="@+id/et_message"
 
@@ -71,7 +63,6 @@
 
                     android:layout_width="49dp"
                     android:layout_height="45dp"
-                    android:layout_weight="4"
                     android:background="@color/gray"
                     android:backgroundTintMode="add"
                     app:srcCompat="@drawable/ic_send_gray" />

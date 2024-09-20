@@ -1,62 +1,22 @@
 package com.example.harry_potter_and_retrofit.presentation
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
+import androidx.fragment.app.viewModels
 import android.os.Bundle
-import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.harry_potter_and_retrofit.databinding.FragmentForumBinding
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
+import com.example.harry_potter_and_retrofit.presentation.firebaseUtils.DatabaseUtils
 
 class ForumFragment : Fragment() {
 
-    private val viewModel: ForumViewModel by viewModels{
-        ForumViewModelFactory()
-    }
+    private val viewModel: ForumViewModel by viewModels()
 
     private var _binding: FragmentForumBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adatper: ForumAdapter
-
-
-    private val openDocLauncher = registerForActivityResult(
-        object : ActivityResultContracts.OpenDocument() {
-            override fun createIntent(context: Context, input: Array<String>): Intent {
-                val intent = super.createIntent(context, input)
-                intent.addCategory(Intent.CATEGORY_OPENABLE)
-                return intent
-            }
-        }) { uri ->
-        uri?.let {
-            onImageSelected(it)
-        }
-    }
-
-    private fun onImageSelected(uri: Uri) {
-        Log.d("IAMGEE", "onImageSelected: $uri")
-        val storage = Firebase.storage.getReference("/pictures")
-        storage.putFile(uri).addOnCompleteListener{ task ->
-            if (task.isSuccessful){
-                binding.etMessage.hint = "Всё ништяк"
-            } else {
-                binding.etMessage.hint = "Всё плохо"
-            }
-        }
-    }
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-    }
+    private lateinit var adatper : ForumAdapter
 
 
     override fun onCreateView(
@@ -72,30 +32,25 @@ class ForumFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.imButton.setOnClickListener {
             val text = binding.etMessage.text.toString()
-            if (text.isNotBlank()) {
-                viewModel.sendTextToFirebaseDb(
-                    text,
-                   )
+            if (text.isNotBlank()){
+                viewModel.sendTextToFirebaseDb(text, getDbUtils())
             }
             binding.etMessage.text.clear()
         }
         binding.etMessage.addTextChangedListener(
             viewModel.textWatcherForEditText(binding.imButton)
         )
-        binding.imAttach.setOnClickListener {
-            openDocLauncher.launch(arrayOf("image/*"))
-        }
         setRcView()
     }
 
     private fun setRcView() {
-        adatper = viewModel.getRecyclerAdapter()
+        adatper = ForumAdapter(getDbUtils().getFirebaseRecyclerOptions())
         val layoutManager = LinearLayoutManager(getMainActivity())
         layoutManager.stackFromEnd = true
         binding.rcView.adapter = adatper
         binding.rcView.layoutManager = layoutManager
         adatper.registerAdapterDataObserver(
-            MyScrollToBottomObserver(binding.rcView, layoutManager, adatper)
+            MyScrollToBottomObserver(binding.rcView,layoutManager,adatper)
         )
     }
 
@@ -115,6 +70,7 @@ class ForumFragment : Fragment() {
     }
 
     private fun getMainActivity() = requireActivity() as MainActivity
+    private fun getDbUtils() =  getMainActivity().databaseUtils
 
 
     companion object {
