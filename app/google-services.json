@@ -12,7 +12,20 @@
           "package_name": "com.example.harry_potter_and_retrofit"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1018238771754-7hqan6u25002mkf67feesg9mdbu0rfuk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.harry_potter_and_retrofit",
+            "certificate_hash": "59643d1e70b7a1a0cd0248c8381461fa913ed263"
+          }
+        },
+        {
+          "client_id": "1018238771754-37m8ai2vvh9vafn2t4kn26ma183l070p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDrh9b6AlXYc_rQdw7PTL3Be5J6680ufSY"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1018238771754-37m8ai2vvh9vafn2t4kn26ma183l070p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
