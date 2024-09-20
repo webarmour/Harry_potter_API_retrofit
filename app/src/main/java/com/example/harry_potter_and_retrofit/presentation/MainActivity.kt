@@ -1,6 +1,9 @@
 package com.example.harry_potter_and_retrofit.presentation
 
+import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
@@ -10,7 +13,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.harry_potter_and_retrofit.R
 import com.example.harry_potter_and_retrofit.databinding.ActivityMainWithDrawerBinding
 import com.example.harry_potter_and_retrofit.presentation.auth.AuthUtils
+import com.example.harry_potter_and_retrofit.presentation.auth.AuthUtils.Companion.REQUEST_CODE_FOR_GOOGLE_SIGN
 import com.example.harry_potter_and_retrofit.presentation.auth.SignDialogUtils
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -57,6 +64,24 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+         if (requestCode == REQUEST_CODE_FOR_GOOGLE_SIGN) {
+            val task =  GoogleSignIn.getSignedInAccountFromIntent(data)
+
+             try {
+                 val account = task.getResult(ApiException::class.java)
+                 AuthUtils(this).signInWithGoogle(account.idToken)
+             } catch (e: ApiException) {
+                 Log.e(TAG, "onActivityResult: $e ", e )
+
+             }
+         }
+
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onSupportNavigateUp(): Boolean {

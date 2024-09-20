@@ -21,10 +21,10 @@
     <string name="sign_up">SIGN UP</string>
     <string name="tv_sign_in">Please, sign in</string>
     <string name="sign_in">SIGN IN</string>
-    <string name="message_user_creation_failed">User creation failed</string>
-    <string name="message_user_verification_success">Verification success. Check your email</string>
-    <string name="message_user_verification_failed">Verification failed</string>
+    <string name="message_user_verification_success">Registration success.Check your email for verification</string>
     <string name="msg_sign_in">Sign in successful</string>
-    <string name="msg_sign_in_error">Sign in error! Check your info</string>
     <string name="sign_out_message">Sign out successful</string>
+    <string name="reset_pass_message_sent">Check your email for password reset</string>
+    <string name="msg_link_account">Email linked to gogle account</string>
+
 </resources>

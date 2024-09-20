@@ -54,6 +54,12 @@ dependencies {
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-storage")
 
+    implementation("com.firebaseui:firebase-ui-auth:7.2.0")
+    implementation("com.firebaseui:firebase-ui-database:7.2.0")
+
+    implementation("com.google.android.gms:play-services-auth")
+    implementation("com.google.gms:google-services:4.4.2")
+
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
 
