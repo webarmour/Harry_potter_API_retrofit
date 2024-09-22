@@ -13,8 +13,7 @@ import com.example.harry_potter_and_retrofit.presentation.ProgressState
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import kotlinx.coroutines.launch
 
-class MainFragment(
-) : Fragment() {
+class MainFragment() : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -34,46 +33,8 @@ class MainFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.character.collect {
-                binding.tvName.text = it.character
-                binding.tvHouse.text = it.hogwartsHouse
-                binding.imView.load(it.image)
-
-            }
-        }
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.state.collect {
-                if (it is ProgressState.Loading) {
-                    binding.progressBar.visibility = View.VISIBLE
-                } else {
-                    binding.progressBar.visibility = View.GONE
-                }
-            }
-        }
-
-        binding.btRandom.setOnClickListener {
-            FirebaseCrashlytics.getInstance().log("This log method with extra info")
-            try {
-                throw Exception("Kok issue")
-            } catch(e: Exception){
-                FirebaseCrashlytics.getInstance().recordException(e)
-            }
-
-//            viewModel.getRandomCharacter()
-
-        }
-        binding.tvHouse.setOnClickListener {
-
-        }
-
-        binding.tvHouse.setOnClickListener {
-
-        }
-
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
     }
 

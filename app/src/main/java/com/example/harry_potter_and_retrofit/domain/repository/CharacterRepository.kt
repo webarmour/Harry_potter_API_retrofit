@@ -1,11 +1,11 @@
 package com.example.harry_potter_and_retrofit.domain.repository
 
-import com.example.harry_potter_and_retrofit.domain.model.CharacterModel
+import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
 
 interface CharacterRepository {
 
 
-    suspend fun getCharacters(): List<CharacterModel>
-    suspend fun getCharacterById(id: Int) : CharacterModel
+    suspend fun getCharacters(): List<CharacterItem>
+    suspend fun getCharacterById(id: Int) : CharacterItem
 
 }

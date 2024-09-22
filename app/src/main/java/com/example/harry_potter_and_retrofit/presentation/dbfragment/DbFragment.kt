@@ -1,24 +1,38 @@
 package com.example.harry_potter_and_retrofit.presentation.dbfragment
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.harry_potter_and_retrofit.databinding.FragmentDbBinding
 
 class DbFragment : Fragment() {
 
 
+    val dbViewModelFactory by lazy {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                if (modelClass.isAssignableFrom(DbViewModel::class.java)) {
+                    return DbViewModel(requireActivity().application) as T
+                }
+                throw RuntimeException("Unknown class name")
+            }
+        }
+    }
 
 
     companion object {
         fun newInstance() = DbFragment()
     }
 
-    private val viewModel: DbViewModel by viewModels()
-    private var _binding : FragmentDbBinding? = null
+    private val viewModel: DbViewModel by viewModels {
+        dbViewModelFactory
+    }
+    private var _binding: FragmentDbBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,10 +51,6 @@ class DbFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.initDao(requireActivity().application)
-        val applicationSingleton = requireActivity().application
-
-
         binding.btAdd.setOnClickListener {
             viewModel.onBtnAdd()
         }
@@ -58,8 +68,6 @@ class DbFragment : Fragment() {
         binding.btUpdate.setOnClickListener {
             viewModel.btUpdate()
         }
-
-
 
 
     }
