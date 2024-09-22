@@ -4,16 +4,16 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
-import com.example.harry_potter_and_retrofit.domain.usecase.GetCharacterByIdUseCase
-import com.example.harry_potter_and_retrofit.domain.usecase.GetCharacterListUseCase
+import com.example.harry_potter_and_retrofit.domain.usecase.UploadCharacterUseCase
+import com.example.harry_potter_and_retrofit.domain.usecase.UploadCharacterListUseCase
 import com.example.harry_potter_and_retrofit.presentation.ProgressState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val getCharacterListUseCase: GetCharacterListUseCase,
-    private val getCharacterByIdUseCase: GetCharacterByIdUseCase,
+    private val uploadCharacterListUseCase: UploadCharacterListUseCase,
+    private val getCharacterByIdUseCase: UploadCharacterUseCase,
 ) : ViewModel() {
 
     private var _state = MutableStateFlow<ProgressState>(ProgressState.Success)
@@ -36,7 +36,7 @@ class MainViewModel(
             try {
 
                 _character.value = getCharacterByIdUseCase()
-                _characterList.value = getCharacterListUseCase()
+                _characterList.value = uploadCharacterListUseCase()
             } catch (t: Throwable) {
                 Log.e("TAG", "${t.message}")
             }

@@ -8,30 +8,23 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.harry_potter_and_retrofit.databinding.FragmentDbBinding
+import kotlinx.coroutines.launch
 
 class DbFragment : Fragment() {
 
-
-    val dbViewModelFactory by lazy {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                if (modelClass.isAssignableFrom(DbViewModel::class.java)) {
-                    return DbViewModel(requireActivity().application) as T
-                }
-                throw RuntimeException("Unknown class name")
-            }
-        }
+    private val viewModel: DbViewModel by viewModels {
+        DbViewModelFactory()
     }
+
 
 
     companion object {
         fun newInstance() = DbFragment()
     }
 
-    private val viewModel: DbViewModel by viewModels {
-        dbViewModelFactory
-    }
+
     private var _binding: FragmentDbBinding? = null
     private val binding get() = _binding!!
 
@@ -60,16 +53,11 @@ class DbFragment : Fragment() {
         binding.btDelete.setOnClickListener {
             viewModel.btDelete()
         }
-//        lifecycleScope.launch {
-//            viewModel.characters.collect{
-//                binding.textView.text = it.joinToString(separator = "\r\n")
-//            }
-//        }
-        binding.btUpdate.setOnClickListener {
-            viewModel.btUpdate()
+        lifecycleScope.launch {
+            viewModel.characters.collect{
+                binding.textView.text = it.joinToString(separator = "\r\n")
+            }
         }
-
-
     }
 
     override fun onDestroyView() {

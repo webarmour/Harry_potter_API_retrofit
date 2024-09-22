@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
-import com.example.harry_potter_and_retrofit.domain.usecase.GetCharacterListUseCase
+import com.example.harry_potter_and_retrofit.domain.usecase.UploadCharacterListUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class CharacterListViewModel(
-    private val getCharacterListUseCase: GetCharacterListUseCase,
+    private val uploadCharacterListUseCase: UploadCharacterListUseCase,
 ) : ViewModel() {
 
     private var _isLoading = MutableStateFlow(false)
@@ -46,7 +46,7 @@ class CharacterListViewModel(
 
             runCatching {
                 _isLoading.value = true
-                getCharacterListUseCase()
+                uploadCharacterListUseCase()
             }.fold(
                 onSuccess = { _characterList.value = it },
                 onFailure = { Log.e(TAG, "${it.message}", it)}
@@ -55,6 +55,12 @@ class CharacterListViewModel(
 
         }
 
+    }
+
+    private fun uploadCharacters(){
+        viewModelScope.launch {
+
+        }
     }
 
 
