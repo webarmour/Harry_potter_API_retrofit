@@ -1,11 +1,11 @@
 package com.example.harry_potter_and_retrofit.presentation.characterlistfragment
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.harry_potter_and_retrofit.domain.model.CharacterModel
+import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
 
 class CharacterListDiffCallback(
-   private val oldList: List<CharacterModel>,
-   private val newList: List<CharacterModel>
+    private val oldList: List<CharacterItem>,
+    private val newList: List<CharacterItem>
 ): DiffUtil.Callback(
 
 ) {

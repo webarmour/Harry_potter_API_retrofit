@@ -4,8 +4,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.harry_potter_and_retrofit.data.network.CharacterRepositoryImpl
-import com.example.harry_potter_and_retrofit.domain.model.CharacterModel
+import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
 import com.example.harry_potter_and_retrofit.domain.usecase.GetCharacterListUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +16,6 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class CharacterListViewModel(
-    private val repo: CharacterRepositoryImpl,
     private val getCharacterListUseCase: GetCharacterListUseCase,
 ) : ViewModel() {
 
@@ -27,9 +25,9 @@ class CharacterListViewModel(
     val onlySlytherin = MutableStateFlow(false)
 
     private var _characterList =
-        MutableStateFlow<List<CharacterModel>>(mutableListOf())
+        MutableStateFlow<List<CharacterItem>>(mutableListOf())
 
-    val characterList: StateFlow<List<CharacterModel>> =
+    val characterList: StateFlow<List<CharacterItem>> =
         combine(_characterList, onlySlytherin) { characters, filterOn ->
             if (filterOn) {
                 characters.filter {
@@ -48,7 +46,7 @@ class CharacterListViewModel(
 
             runCatching {
                 _isLoading.value = true
-                getCharacterListUseCase.getCharacterList()
+                getCharacterListUseCase()
             }.fold(
                 onSuccess = { _characterList.value = it },
                 onFailure = { Log.e(TAG, "${it.message}", it)}

@@ -20,9 +20,6 @@ class ForumViewModel : ViewModel() {
         databaseUtils.sendTextToDbFirebase(message)
     }
 
-    fun getDataFromFirebaseDb(textView: TextView, databaseUtils: DatabaseUtils) {
-        databaseUtils.retreiveDataFromDb(textView)
-    }
 
     inner class textWatcherForEditText(
        private val imageButton: ImageButton

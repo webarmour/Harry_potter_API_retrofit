@@ -1,18 +1,22 @@
 package com.example.harry_potter_and_retrofit.presentation.dbfragment
 
 import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.harry_potter_and_retrofit.App
+import com.example.harry_potter_and_retrofit.R
 import com.example.harry_potter_and_retrofit.data.localdb.dao.CharacterDataAccessObject
 import com.example.harry_potter_and_retrofit.data.localdb.dbmodel.CharacterDbModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class DbViewModel : ViewModel() {
+class DbViewModel (
+    private val context: Application
+): AndroidViewModel(context) {
 
-    private lateinit var characterDao: CharacterDataAccessObject
+    private val characterDao = (context as App).db.getCharacterDao()
 
         private var _characters = MutableStateFlow<List<CharacterDbModel>>(mutableListOf())
     val characters = _characters.asStateFlow()
@@ -25,15 +29,6 @@ class DbViewModel : ViewModel() {
 //        )
 //
 
-    fun initDao(application: Application?) {
-        characterDao = (application as App).db.getCharacterDao()
-    }
-
-    init {
-        viewModelScope.launch {
-
-        }
-    }
 
     fun onBtnAdd() {
         var size = _characters.value.size

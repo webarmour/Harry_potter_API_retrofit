@@ -12,7 +12,7 @@ class CharacterListViewModelFactory: ViewModelProvider.Factory {
             if (modelClass.isAssignableFrom(CharacterListViewModel::class.java)){
                 val repo = CharacterRepositoryImpl()
                 val useCase2 = GetCharacterListUseCase(repo)
-                return CharacterListViewModel(repo, useCase2) as T
+                return CharacterListViewModel(useCase2) as T
             } else {
                 throw IllegalArgumentException("Unknown class name")
             }

@@ -14,9 +14,9 @@ class MainViewModelFactory : ViewModelProvider.Factory {
             val repo = CharacterRepositoryImpl()
             val useCase = GetCharacterByIdUseCase(repo)
             val useCase2 = GetCharacterListUseCase(repo)
-            return MainViewModel(repo, useCase2, useCase) as T
+            return MainViewModel(useCase2, useCase) as T
         } else {
-            throw IllegalArgumentException("Unknown class name")
+            throw RuntimeException("Unknown class name")
         }
 
     }
