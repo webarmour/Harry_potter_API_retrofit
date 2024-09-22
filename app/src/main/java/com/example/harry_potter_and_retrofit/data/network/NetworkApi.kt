@@ -1,5 +1,6 @@
 package com.example.harry_potter_and_retrofit.data.network
 
+import com.example.harry_potter_and_retrofit.data.localdb.dbmodel.CharacterDbModel
 import com.example.harry_potter_and_retrofit.data.network.dto.CharacterDataTransferObject
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

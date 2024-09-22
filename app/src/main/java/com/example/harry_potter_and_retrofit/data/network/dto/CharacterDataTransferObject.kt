@@ -7,12 +7,12 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class CharacterDataTransferObject(
-    @Json(name ="id")
+    @Json(name = "id")
     val id: Int,
-    @Json(name ="character")
+    @Json(name = "character")
     val name: String,
-    @Json(name ="hogwartsHouse")
+    @Json(name = "hogwartsHouse")
     val hogwartsHouse: String,
-    @Json(name ="image")
-    val imageUrl: String
+    @Json(name = "image")
+    val imageUrl: String,
 )

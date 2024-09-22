@@ -70,5 +70,6 @@
     </string>
     <string name="list_forum">Forum</string>
     <string name="enter_your_message">Enter your message</string>
+    <string name="list_room">Database</string>
 
 </resources>
