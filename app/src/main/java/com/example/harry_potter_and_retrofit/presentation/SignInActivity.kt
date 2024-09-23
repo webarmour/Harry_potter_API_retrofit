@@ -9,7 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.harry_potter_and_retrofit.R
 import com.example.harry_potter_and_retrofit.databinding.ActivitySignInBinding
-import com.example.harry_potter_and_retrofit.presentation.firebaseUtils.AuthUtils
+import com.example.harry_potter_and_retrofit.data.firebase.AuthUtils
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 

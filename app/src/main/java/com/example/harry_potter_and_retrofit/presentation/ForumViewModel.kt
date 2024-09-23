@@ -3,33 +3,34 @@ package com.example.harry_potter_and_retrofit.presentation
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
+import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.R
-import com.example.harry_potter_and_retrofit.presentation.firebaseUtils.DatabaseUtils
-import com.google.firebase.database.database
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.example.harry_potter_and_retrofit.data.ForumRepositoryImpl
+import com.example.harry_potter_and_retrofit.domain.usecase.SendMessageUseCase
 
-class ForumViewModel : ViewModel() {
+class ForumViewModel(
+    private val sendMessageUseCase: SendMessageUseCase,
+) : ViewModel() {
 
 
-    fun sendTextToFirebaseDb(message: String, databaseUtils: DatabaseUtils) {
-        databaseUtils.sendTextToDbFirebase(message)
+    fun getRecyclerAdapter(): ForumAdapter {
+        val options = App.INSTANCE.firebaseInstance.getFirebaseRecyclerOptions()
+        return ForumAdapter(options)
     }
 
-    fun getDataFromFirebaseDb(textView: TextView, databaseUtils: DatabaseUtils) {
-        databaseUtils.retreiveDataFromDb(textView)
+    fun sendTextToFirebaseDb(text: String) {
+        sendMessageUseCase(text)
     }
+
 
     inner class textWatcherForEditText(
-       private val imageButton: ImageButton
-    ): TextWatcher {
+        private val imageButton: ImageButton,
+    ) : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
         }
+
         override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
             if (text?.trim()?.isBlank() == false) {
                 imageButton.setImageResource(R.drawable.ic_send)
@@ -45,9 +46,5 @@ class ForumViewModel : ViewModel() {
         }
     }
 
-    data class ForumItem(
-        val text: String? = "",
-        val user: String? = ""
-    )
 
 }

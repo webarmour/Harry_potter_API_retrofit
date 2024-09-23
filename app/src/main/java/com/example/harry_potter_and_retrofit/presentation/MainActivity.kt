@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAuth(){
-        App.INSTANCE.firebaseInstance.initAuthUtils(this)
+        App.INSTANCE.firebaseInstance.getAuthUtils(this)
     }
 
     override fun onSupportNavigateUp(): Boolean {
