@@ -12,8 +12,8 @@ class AuthUtils(
    private val mainActivity: MainActivity,
 ) {
 
-    val auth = Firebase.auth
-    val authUI = AuthUI.getInstance()
+    private val auth = Firebase.auth
+    private val authUI = AuthUI.getInstance()
 
     private fun isDoneAuth() = auth.currentUser != null
     private val signInActivityClass = SignInActivity::class.java

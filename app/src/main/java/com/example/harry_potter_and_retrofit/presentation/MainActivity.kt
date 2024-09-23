@@ -24,9 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainWithDrawerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         initAuth()
-
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragment_container) as NavHostFragment
         navController = navHostFragment.navController
@@ -59,7 +57,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAuth(){
-        App.INSTANCE.firebaseInstance.getAuthUtils(this)
+        App.INSTANCE.firebaseInstance.initAuthUtils(this)
     }
 
     override fun onSupportNavigateUp(): Boolean {
