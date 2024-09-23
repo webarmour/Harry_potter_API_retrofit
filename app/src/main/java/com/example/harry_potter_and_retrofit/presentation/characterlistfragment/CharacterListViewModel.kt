@@ -5,6 +5,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
+import com.example.harry_potter_and_retrofit.domain.usecase.CacheCharactersListUseCase
+import com.example.harry_potter_and_retrofit.domain.usecase.GetCharacterListUseCase
 import com.example.harry_potter_and_retrofit.domain.usecase.UploadCharacterListUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,6 +19,8 @@ import kotlinx.coroutines.launch
 
 class CharacterListViewModel(
     private val uploadCharacterListUseCase: UploadCharacterListUseCase,
+    private val getCharacterListUseCase: GetCharacterListUseCase,
+    private val cacheCharacterListUseCase: CacheCharactersListUseCase,
 ) : ViewModel() {
 
     private var _isLoading = MutableStateFlow(false)
@@ -26,6 +30,10 @@ class CharacterListViewModel(
 
     private var _characterList =
         MutableStateFlow<List<CharacterItem>>(mutableListOf())
+
+    init {
+        getCharacters()
+    }
 
     val characterList: StateFlow<List<CharacterItem>> =
         combine(_characterList, onlySlytherin) { characters, filterOn ->
@@ -41,24 +49,18 @@ class CharacterListViewModel(
             viewModelScope, SharingStarted.Eagerly, _characterList.value
         )
 
-    fun updateList() {
-        viewModelScope.launch(Dispatchers.IO) {
 
+    private fun getCharacters() {
+        viewModelScope.launch(Dispatchers.IO) {
             runCatching {
                 _isLoading.value = true
-                uploadCharacterListUseCase()
+                cacheCharacterListUseCase(uploadCharacterListUseCase())
+                getCharacterListUseCase()
             }.fold(
                 onSuccess = { _characterList.value = it },
-                onFailure = { Log.e(TAG, "${it.message}", it)}
+                onFailure = { Log.e(TAG, "${it.message}", it) }
             )
             _isLoading.value = false
-
-        }
-
-    }
-
-    private fun uploadCharacters(){
-        viewModelScope.launch {
 
         }
     }

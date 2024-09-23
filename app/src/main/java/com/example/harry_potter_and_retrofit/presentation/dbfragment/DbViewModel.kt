@@ -36,7 +36,7 @@ class DbViewModel(
         var size = _characters.value.size
 
         viewModelScope.launch {
-            characterDao.insertCharacter(
+            characterDao.insertCharacterItem(
                 CharacterDbModel(
                     id = 0,
                     hogwartsHouse = "Slytherin",
@@ -53,7 +53,7 @@ class DbViewModel(
     fun btDelete() {
         viewModelScope.launch {
             characters.value.lastOrNull()?.let {
-                characterDao.deleteCharacter(it)
+                characterDao.deleteAll()
             }
 
 
@@ -61,16 +61,6 @@ class DbViewModel(
         updateTextView()
     }
 
-    fun btUpdate() {
-        viewModelScope.launch {
-            characters.value.lastOrNull()?.let {
-                characterDao.editCharacter(it.copy(character = "Severus"))
-            }
-
-
-        }
-        updateTextView()
-    }
 
     private fun updateTextView() {
         viewModelScope.launch {

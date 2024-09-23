@@ -5,5 +5,5 @@ import com.example.harry_potter_and_retrofit.domain.repository.CharacterReposito
 class GetCharacterUseCase(
     private val repository: CharacterRepository,
 ) {
-    suspend operator fun invoke(id: Int) = repository.getCharacterFromLocalDb(id)
+    suspend operator fun invoke(id: Int = 1) = repository.getCharacterFromLocalDb(id)
 }
