@@ -13,6 +13,16 @@
         android:icon="@drawable/ic_character_list"
         android:title="@string/list_of_characters"/>
 
+    <item
+        android:id="@+id/nav_forum"
+        android:icon="@drawable/ic_forum"
+        android:title="@string/list_forum"/>
+
+    <item
+        android:id="@+id/nav_room_db"
+        android:icon="@drawable/ic_data"
+        android:title="@string/list_room"/>
+
 
 
 </menu>

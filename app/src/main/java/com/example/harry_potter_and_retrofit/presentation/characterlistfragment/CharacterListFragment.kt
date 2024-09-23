@@ -25,7 +25,6 @@ class CharacterListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         iniRcView()
-        viewModel.updateList()
         fillListAdapter()
 
 

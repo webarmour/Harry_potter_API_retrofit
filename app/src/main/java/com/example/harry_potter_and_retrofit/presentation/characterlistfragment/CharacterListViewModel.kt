@@ -4,9 +4,10 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.harry_potter_and_retrofit.data.network.CharacterRepositoryImpl
-import com.example.harry_potter_and_retrofit.domain.model.CharacterModel
+import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
+import com.example.harry_potter_and_retrofit.domain.usecase.CacheCharactersListUseCase
 import com.example.harry_potter_and_retrofit.domain.usecase.GetCharacterListUseCase
+import com.example.harry_potter_and_retrofit.domain.usecase.UploadCharacterListUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -17,8 +18,9 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class CharacterListViewModel(
-    private val repo: CharacterRepositoryImpl,
+    private val uploadCharacterListUseCase: UploadCharacterListUseCase,
     private val getCharacterListUseCase: GetCharacterListUseCase,
+    private val cacheCharacterListUseCase: CacheCharactersListUseCase,
 ) : ViewModel() {
 
     private var _isLoading = MutableStateFlow(false)
@@ -27,9 +29,13 @@ class CharacterListViewModel(
     val onlySlytherin = MutableStateFlow(false)
 
     private var _characterList =
-        MutableStateFlow<List<CharacterModel>>(mutableListOf())
+        MutableStateFlow<List<CharacterItem>>(mutableListOf())
 
-    val characterList: StateFlow<List<CharacterModel>> =
+    init {
+        getCharacters()
+    }
+
+    val characterList: StateFlow<List<CharacterItem>> =
         combine(_characterList, onlySlytherin) { characters, filterOn ->
             if (filterOn) {
                 characters.filter {
@@ -43,20 +49,20 @@ class CharacterListViewModel(
             viewModelScope, SharingStarted.Eagerly, _characterList.value
         )
 
-    fun updateList() {
-        viewModelScope.launch(Dispatchers.IO) {
 
+    private fun getCharacters() {
+        viewModelScope.launch(Dispatchers.IO) {
             runCatching {
                 _isLoading.value = true
-                getCharacterListUseCase.getCharacterList()
+                cacheCharacterListUseCase(uploadCharacterListUseCase())
+                getCharacterListUseCase()
             }.fold(
                 onSuccess = { _characterList.value = it },
-                onFailure = { Log.e(TAG, "${it.message}", it)}
+                onFailure = { Log.e(TAG, "${it.message}", it) }
             )
             _isLoading.value = false
 
         }
-
     }
 
 

@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.harry_potter_and_retrofit.R
 import com.example.harry_potter_and_retrofit.databinding.CharacterItemBinding
-import com.example.harry_potter_and_retrofit.domain.model.CharacterModel
+import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
 
 class CharacterListAdapter :
-    ListAdapter<CharacterModel, CharacterListAdapter.ViewHolder>(Comparator()) {
+    ListAdapter<CharacterItem, CharacterListAdapter.ViewHolder>(Comparator()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,12 +36,12 @@ class CharacterListAdapter :
     }
 
 
-    class Comparator : DiffUtil.ItemCallback<CharacterModel>() {
-        override fun areItemsTheSame(oldItem: CharacterModel, newItem: CharacterModel): Boolean {
+    class Comparator : DiffUtil.ItemCallback<CharacterItem>() {
+        override fun areItemsTheSame(oldItem: CharacterItem, newItem: CharacterItem): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: CharacterModel, newItem: CharacterModel): Boolean {
+        override fun areContentsTheSame(oldItem: CharacterItem, newItem: CharacterItem): Boolean {
             return oldItem == newItem
         }
 

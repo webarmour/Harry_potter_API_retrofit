@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.harry_potter_and_retrofit.presentation.mainfragment.MainViewModel" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,6 +19,7 @@
         android:layout_height="250dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        app:imageOfHarryPotterCharacter="@{viewModel.character.image}"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/tvName"
@@ -29,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        app:characterNameOfHarryPotter="@{viewModel.character.character}"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,6 +52,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
+        app:characterHouseOfHarryPotter="@{viewModel.character.hogwartsHouse}"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
@@ -55,6 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="68dp"
+        app:onButtonRandomClickListener="@{() -> viewModel.getRandomCharacter()}"
         android:text="@string/random"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,6 +75,7 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:visibilityOfProgressBar="@{viewModel.state}"
         android:layout_marginBottom="68dp"
         app:layout_constraintBottom_toTopOf="@+id/btRandom"
         app:layout_constraintEnd_toEndOf="parent"

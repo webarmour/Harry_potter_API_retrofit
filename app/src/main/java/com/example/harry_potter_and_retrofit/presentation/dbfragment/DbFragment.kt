@@ -1,15 +1,22 @@
 package com.example.harry_potter_and_retrofit.presentation.dbfragment
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.harry_potter_and_retrofit.databinding.FragmentDbBinding
+import kotlinx.coroutines.launch
 
 class DbFragment : Fragment() {
 
+    private val viewModel: DbViewModel by viewModels {
+        DbViewModelFactory()
+    }
 
 
 
@@ -17,8 +24,8 @@ class DbFragment : Fragment() {
         fun newInstance() = DbFragment()
     }
 
-    private val viewModel: DbViewModel by viewModels()
-    private var _binding : FragmentDbBinding? = null
+
+    private var _binding: FragmentDbBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,31 +44,18 @@ class DbFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.initDao(requireActivity().application)
-        val applicationSingleton = requireActivity().application
-
-
         binding.btAdd.setOnClickListener {
             viewModel.onBtnAdd()
         }
-        binding.btUpdate.setOnClickListener {
-            viewModel.btUpdate()
-        }
+
         binding.btDelete.setOnClickListener {
             viewModel.btDelete()
         }
-//        lifecycleScope.launch {
-//            viewModel.characters.collect{
-//                binding.textView.text = it.joinToString(separator = "\r\n")
-//            }
-//        }
-        binding.btUpdate.setOnClickListener {
-            viewModel.btUpdate()
+        lifecycleScope.launch {
+            viewModel.characters.collect{
+                binding.textView.text = it.joinToString(separator = "\r\n")
+            }
         }
-
-
-
-
     }
 
     override fun onDestroyView() {
