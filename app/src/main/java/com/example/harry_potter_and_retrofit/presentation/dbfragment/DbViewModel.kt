@@ -16,55 +16,9 @@ class DbViewModel(
     private val context: Application,
 ) : AndroidViewModel(context) {
 
-    private val characterDao = (context as App).db.getCharacterDao()
-
-    private var _characters = MutableStateFlow<List<CharacterDbModel>>(mutableListOf())
-    val characters = _characters.asStateFlow()
-
-//    val characters = characterDao.getAllCharacters()
-//        .stateIn(
-//            viewModelScope,
-//            SharingStarted.WhileSubscribed(500L),
-//            mutableListOf()
-//        )
-//
-
-
-
-    fun onBtnAdd() {
-
-        var size = _characters.value.size
-
-        viewModelScope.launch {
-            characterDao.insertCharacterItem(
-                CharacterDbModel(
-                    id = 0,
-                    hogwartsHouse = "Slytherin",
-                    image = "image.png",
-                    character = "Potter ${characters.value.size}"
-                )
-            )
-
-        }
-        updateTextView()
+    fun testNotify() {
+        (context as App).notificationService.createNotification()
     }
 
 
-    fun btDelete() {
-        viewModelScope.launch {
-            characters.value.lastOrNull()?.let {
-                characterDao.deleteAll()
-            }
-
-
-        }
-        updateTextView()
-    }
-
-
-    private fun updateTextView() {
-        viewModelScope.launch {
-            _characters.value = characterDao.getAllCharacters()
-        }
-    }
 }

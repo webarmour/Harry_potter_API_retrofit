@@ -8,7 +8,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.harry_potter_and_retrofit.R
@@ -18,21 +17,20 @@ class NotificationUtils(
 ) {
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun createNotificationChannel() {
-
-        val name = "Our Notification Channel"
-        val importance = NotificationManager.IMPORTANCE_HIGH
-        val descriptionText = "CHECK YOUR MOTHER"
-        val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-            description = descriptionText
+        if (checkIfBuildVersionMoreThanO()) {
+            val name = "Our Notification Channel"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val descriptionText = "test text"
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            val notificationManager =
+                application.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
         }
-        val notificationManager =
-            application.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
     }
 
-    @SuppressLint("MissingPermission", "NotificationPermission")
     fun createNotification() {
 
         val intent = Intent(application, MainActivity::class.java)
@@ -46,9 +44,10 @@ class NotificationUtils(
 
         val notification = NotificationCompat.Builder(application, CHANNEL_ID)
             .setSmallIcon(R.drawable.potterpng)
-            .setContentTitle("Time to check mother")
-            .setContentText("Hi how your momma doin")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setBadgeIconType(R.drawable.potterpng)
+            .setContentTitle("Привет")
+            .setContentText("Чекни мать")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
             .build()
@@ -65,6 +64,10 @@ class NotificationUtils(
         } else {
             PendingIntent.FLAG_UPDATE_CURRENT
         }
+    }
+
+    private fun checkIfBuildVersionMoreThanO(): Boolean{
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
     }
 
 

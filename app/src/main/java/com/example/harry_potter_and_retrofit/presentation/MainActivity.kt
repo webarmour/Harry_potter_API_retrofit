@@ -1,7 +1,12 @@
 package com.example.harry_potter_and_retrofit.presentation
 
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -16,14 +21,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainWithDrawerBinding
     private lateinit var navController: NavController
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainWithDrawerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        PermissionUtils(this).checkPermissions()
+
         initAuth()
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragment_container) as NavHostFragment
@@ -53,11 +58,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-    }
-
-    private fun initAuth(){
-        App.INSTANCE.firebaseInstance.initAuthUtils(this)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -65,7 +65,19 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun signUpIn() {App.INSTANCE.firebaseInstance.authUtils.signUpIn()}
-    private fun signOut() {App.INSTANCE.firebaseInstance.authUtils.signOut()}
+
+
+
+    private fun initAuth() {
+        App.INSTANCE.firebaseInstance.initAuthUtils(this)
+    }
+
+    private fun signUpIn() {
+        App.INSTANCE.firebaseInstance.authUtils.signUpIn()
+    }
+
+    private fun signOut() {
+        App.INSTANCE.firebaseInstance.authUtils.signOut()
+    }
 
 }

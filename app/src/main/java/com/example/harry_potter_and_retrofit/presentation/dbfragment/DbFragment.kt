@@ -28,9 +28,6 @@ class DbFragment : Fragment() {
     private var _binding: FragmentDbBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,18 +41,10 @@ class DbFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btAdd.setOnClickListener {
-            viewModel.onBtnAdd()
+        binding.btNotify.setOnClickListener {
+            viewModel.testNotify()
         }
 
-        binding.btDelete.setOnClickListener {
-            viewModel.btDelete()
-        }
-        lifecycleScope.launch {
-            viewModel.characters.collect{
-                binding.textView.text = it.joinToString(separator = "\r\n")
-            }
-        }
     }
 
     override fun onDestroyView() {
