@@ -4,7 +4,6 @@ import android.app.Application
 import com.example.harry_potter_and_retrofit.domain.model.ForumItem
 import com.example.harry_potter_and_retrofit.presentation.MainActivity
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.android.gms.auth.api.Auth
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -12,7 +11,7 @@ import com.google.firebase.ktx.Firebase
 class FirebaseUtils(
 ) {
 
-     lateinit var  authUtils : AuthUtils
+    lateinit var authUtils: AuthUtils
 
     private val dbFirebase = Firebase.database
 
@@ -28,7 +27,10 @@ class FirebaseUtils(
             .setQuery(forumReference, ForumItem::class.java)
             .build()
 
-    fun getAuthUtils(mainActivity: MainActivity) = AuthUtils(mainActivity)
+    fun initAuthUtils(mainActivity: MainActivity) {
+        authUtils = AuthUtils(mainActivity)
+
+    }
 
 
     companion object {
