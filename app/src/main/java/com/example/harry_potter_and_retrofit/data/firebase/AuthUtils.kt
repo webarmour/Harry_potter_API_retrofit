@@ -1,38 +1,33 @@
-package com.example.harry_potter_and_retrofit.presentation.firebaseUtils
+package com.example.harry_potter_and_retrofit.data.firebase
 
 import android.content.Intent
 import com.example.harry_potter_and_retrofit.R
-import com.example.harry_potter_and_retrofit.databinding.ActivitySignInBinding
-import com.example.harry_potter_and_retrofit.presentation.ForumAdapter.Companion.ANONYMOUS
 import com.example.harry_potter_and_retrofit.presentation.MainActivity
 import com.example.harry_potter_and_retrofit.presentation.SignInActivity
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class AuthUtils(private val mainActivity: MainActivity) {
-
-
-    private val signInActivity = SignInActivity()
-
+class AuthUtils(
+   private val mainActivity: MainActivity,
+) {
 
     val auth = Firebase.auth
     val authUI = AuthUI.getInstance()
-    private lateinit var binding: ActivitySignInBinding
 
-    private fun isDoneAuth(): Boolean {
-        return auth.currentUser != null
-    }
+    private fun isDoneAuth() = auth.currentUser != null
+    private val signInActivityClass = SignInActivity::class.java
 
-    fun signUpIn(){
+
+    fun signUpIn() {
         if (!isDoneAuth()) {
-            val intent = Intent(mainActivity, SignInActivity::class.java)
+            val intent = Intent(mainActivity, signInActivityClass)
             mainActivity.startActivity(intent)
             mainActivity.finish()
         }
     }
 
-    fun signOut(){
+    fun signOut() {
         authUI.signOut(mainActivity)
     }
 

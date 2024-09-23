@@ -3,14 +3,17 @@ package com.example.harry_potter_and_retrofit.presentation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.R
+import com.example.harry_potter_and_retrofit.data.ForumRepositoryImpl
 import com.example.harry_potter_and_retrofit.databinding.ForumItemBinding
+import com.example.harry_potter_and_retrofit.domain.model.ForumItem
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 
 class ForumAdapter(
-    private val options: FirebaseRecyclerOptions<ForumViewModel.ForumItem>,
-) : FirebaseRecyclerAdapter<ForumViewModel.ForumItem, ForumAdapter.ForumViewHolder>(options) {
+    private val options: FirebaseRecyclerOptions<ForumItem>,
+) : FirebaseRecyclerAdapter<ForumItem, ForumAdapter.ForumViewHolder>(options) {
 
 
 
@@ -27,7 +30,7 @@ class ForumAdapter(
     override fun onBindViewHolder(
         holder: ForumViewHolder,
         position: Int,
-        model: ForumViewModel.ForumItem,
+        model: ForumItem,
     ) {
         holder.bind(model)
     }
@@ -35,7 +38,7 @@ class ForumAdapter(
     inner class ForumViewHolder(
         private val binding: ForumItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(forumItem: ForumViewModel.ForumItem) {
+        fun bind(forumItem: ForumItem) {
             binding.tvName.text = forumItem.user ?: ANONYMOUS
             binding.tvMessage.text = forumItem.text
         }
@@ -43,5 +46,6 @@ class ForumAdapter(
 
     companion object {
         const val ANONYMOUS = "Anonymous"
+
     }
 }

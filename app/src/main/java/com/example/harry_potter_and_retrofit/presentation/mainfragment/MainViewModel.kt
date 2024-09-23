@@ -4,16 +4,18 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
+import com.example.harry_potter_and_retrofit.domain.usecase.CacheCharacterUseCase
+import com.example.harry_potter_and_retrofit.domain.usecase.GetCharacterUseCase
 import com.example.harry_potter_and_retrofit.domain.usecase.UploadCharacterUseCase
-import com.example.harry_potter_and_retrofit.domain.usecase.UploadCharacterListUseCase
 import com.example.harry_potter_and_retrofit.presentation.ProgressState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val uploadCharacterListUseCase: UploadCharacterListUseCase,
-    private val getCharacterByIdUseCase: UploadCharacterUseCase,
+    private val uploadCharacterUseCase: UploadCharacterUseCase,
+    private val getCharacterUseCase: GetCharacterUseCase,
+    private val cacheCharacterUseCase: CacheCharacterUseCase,
 ) : ViewModel() {
 
     private var _state = MutableStateFlow<ProgressState>(ProgressState.Success)
@@ -24,19 +26,14 @@ class MainViewModel(
 
     val character = _character.asStateFlow()
 
-    private var _characterList =
-        MutableStateFlow<List<CharacterItem>>(mutableListOf())
-
-    val characterList = _characterList.asStateFlow()
 
     init {
         viewModelScope.launch {
             _state.value = ProgressState.Loading
 
             try {
-
-                _character.value = getCharacterByIdUseCase()
-                _characterList.value = uploadCharacterListUseCase()
+                cacheCharacterUseCase(uploadCharacterUseCase())
+                _character.value = getCharacterUseCase()
             } catch (t: Throwable) {
                 Log.e("TAG", "${t.message}")
             }
@@ -47,19 +44,16 @@ class MainViewModel(
     }
 
     fun getRandomCharacter() {
-
         viewModelScope.launch {
-            _state.value = ProgressState.Loading
-            try {
-                val upperIndex = _characterList.value.size - 1
-                _character.value =
-                    getCharacterByIdUseCase((0..upperIndex).random())
-            } catch (t: Throwable) {
-                Log.e("TAG", "${t.message}")
-            }
+            runCatching {
+                _state.value = ProgressState.Loading
+                getCharacterUseCase((1..23).random())
+            }.fold(
+                onSuccess = { _character.value = it },
+                onFailure = { Log.e("TAG", "${it.message}") }
+            )
             _state.value = ProgressState.Success
         }
-
     }
 
 }

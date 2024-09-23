@@ -47,9 +47,7 @@ class DbFragment : Fragment() {
         binding.btAdd.setOnClickListener {
             viewModel.onBtnAdd()
         }
-        binding.btUpdate.setOnClickListener {
-            viewModel.btUpdate()
-        }
+
         binding.btDelete.setOnClickListener {
             viewModel.btDelete()
         }
