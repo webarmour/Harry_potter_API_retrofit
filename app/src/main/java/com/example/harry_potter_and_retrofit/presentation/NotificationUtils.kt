@@ -2,6 +2,7 @@ package com.example.harry_potter_and_retrofit.presentation
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -10,6 +11,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.R
 
 class NotificationUtils(
@@ -52,10 +54,24 @@ class NotificationUtils(
             .setContentIntent(pendingIntent)
             .build()
 
+        val isGrantedNotification =
+            ((application as App).permissionsService.checkPermissionForNotification())
+        if (isGrantedNotification != null) {
+            if (isGrantedNotification) {
+                showNotification(notification)
+            }
+        } else {
+            showNotification(notification)
+        }
+
+
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun showNotification(notification: Notification) {
         NotificationManagerCompat.from(application).notify(
             NOTIFICATION_ID, notification
         )
-
     }
 
     private fun getCorrectFlagForPendingIntent(): Int {
@@ -66,7 +82,7 @@ class NotificationUtils(
         }
     }
 
-    private fun checkIfBuildVersionMoreThanO(): Boolean{
+    private fun checkIfBuildVersionMoreThanO(): Boolean {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
     }
 

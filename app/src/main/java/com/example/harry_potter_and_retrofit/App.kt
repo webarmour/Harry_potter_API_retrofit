@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.harry_potter_and_retrofit.data.firebase.FirebaseUtils
 import com.example.harry_potter_and_retrofit.data.localdb.databaase.CharacterDatabase
 import com.example.harry_potter_and_retrofit.presentation.NotificationUtils
+import com.example.harry_potter_and_retrofit.presentation.PermissionUtils
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 
 class App : Application() {
@@ -18,13 +19,16 @@ class App : Application() {
     lateinit var notificationService: NotificationUtils
         private set
 
+    lateinit var permissionsService: PermissionUtils
+        private set
+
     override fun onCreate() {
         super.onCreate()
 
         val crashlytics = FirebaseCrashlytics.getInstance()
         crashlytics.isCrashlyticsCollectionEnabled = true
         INSTANCE = this
-
+        permissionsService = PermissionUtils.getInstance(this)
         db = CharacterDatabase.getInstance(this)
         firebaseInstance = FirebaseUtils.getInstance(this)
         firebaseInstance.crashlytics.isCrashlyticsCollectionEnabled = false
@@ -32,6 +36,8 @@ class App : Application() {
         notificationService = NotificationUtils.getInstance(this)
 
         notificationService.createNotificationChannel()
+
+
 
 
     }

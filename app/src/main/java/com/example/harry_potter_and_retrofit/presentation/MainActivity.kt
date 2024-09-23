@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainWithDrawerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        PermissionUtils(this).checkPermissions()
+        App.INSTANCE.permissionsService.iniMainActivity(this)
+        App.INSTANCE.permissionsService.checkPermissions()
 
         initAuth()
         val navHostFragment = supportFragmentManager
