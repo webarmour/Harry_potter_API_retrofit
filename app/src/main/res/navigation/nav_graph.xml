@@ -25,7 +25,7 @@
         android:label="ForumFragment" />
     <fragment
         android:id="@+id/nav_room_db"
-        android:name="com.example.harry_potter_and_retrofit.presentation.dbfragment.DbFragment"
-        android:label="DbFragment" />
+        android:name="com.example.harry_potter_and_retrofit.presentation.dbfragment.WorkmanagerFragment"
+        android:label="WorkManager" />
 
 </navigation>

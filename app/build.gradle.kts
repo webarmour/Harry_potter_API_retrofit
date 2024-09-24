@@ -67,6 +67,7 @@ dependencies {
     implementation("com.squareup.moshi:moshi:1.14.0")
     implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
     implementation(libs.firebase.auth)
+    implementation(libs.androidx.work.runtime.ktx)
     ksp("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
 
     implementation("com.google.code.gson:gson:2.10.1")

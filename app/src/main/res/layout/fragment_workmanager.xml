@@ -5,7 +5,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.dbfragment.DbFragment">
+    tools:context=".presentation.dbfragment.WorkmanagerFragment">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -30,13 +30,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:text="NOTIFY"
+        android:text="SERVICE"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/scrollView2"
         app:layout_optimizationLevel="chains" />
+
+    <Button
+        android:id="@+id/btStop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:text="STOP"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btNotify"
+        app:layout_constraintStart_toStartOf="@+id/btNotify" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

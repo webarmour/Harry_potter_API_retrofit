@@ -88,7 +88,7 @@ class NotificationUtils(
 
 
     companion object {
-        private const val CHANNEL_ID = "Channel_id"
+       private const val CHANNEL_ID = "Channel_id"
         private const val NOTIFICATION_ID = 1
         private val LOCK = Any()
         private var INSTANCE: NotificationUtils? = null

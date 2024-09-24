@@ -6,26 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import com.example.harry_potter_and_retrofit.databinding.FragmentDbBinding
-import kotlinx.coroutines.launch
+import com.example.harry_potter_and_retrofit.databinding.FragmentWorkmanagerBinding
 
-class DbFragment : Fragment() {
+class WorkmanagerFragment : Fragment() {
 
-    private val viewModel: DbViewModel by viewModels {
-        DbViewModelFactory()
+    private val viewModel: WorkmanagerViewModel by viewModels {
+        WorkmanagerViewModelFactory()
     }
-
 
 
     companion object {
-        fun newInstance() = DbFragment()
+        fun newInstance() = WorkmanagerFragment()
     }
 
 
-    private var _binding: FragmentDbBinding? = null
+    private var _binding: FragmentWorkmanagerBinding? = null
     private val binding get() = _binding!!
 
 
@@ -33,7 +28,7 @@ class DbFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentDbBinding.inflate(inflater, container, false)
+        _binding = FragmentWorkmanagerBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -42,7 +37,10 @@ class DbFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btNotify.setOnClickListener {
-            viewModel.testNotify()
+            viewModel.startService()
+        }
+        binding.btStop.setOnClickListener {
+            viewModel.stopService()
         }
 
     }

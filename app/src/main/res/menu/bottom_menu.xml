@@ -20,8 +20,8 @@
 
     <item
         android:id="@+id/nav_room_db"
-        android:icon="@drawable/ic_data"
-        android:title="@string/list_room"/>
+        android:icon="@drawable/potterpng"
+        android:title="@string/workmanager"/>
 
 
 
