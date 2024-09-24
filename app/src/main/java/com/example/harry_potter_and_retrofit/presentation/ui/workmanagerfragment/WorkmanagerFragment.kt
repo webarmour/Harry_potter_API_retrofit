@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation.dbfragment
+package com.example.harry_potter_and_retrofit.presentation.ui.workmanagerfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

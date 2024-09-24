@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation
+package com.example.harry_potter_and_retrofit.presentation.ui.forumfragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

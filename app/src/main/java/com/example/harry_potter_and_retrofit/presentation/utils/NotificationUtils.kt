@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation
+package com.example.harry_potter_and_retrofit.presentation.utils
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -13,6 +13,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.R
+import com.example.harry_potter_and_retrofit.presentation.ui.activities.MainActivity
 
 class NotificationUtils(
     private val application: Application,

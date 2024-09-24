@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation
+package com.example.harry_potter_and_retrofit.presentation.ui.forumfragment
 
 import android.text.Editable
 import android.text.TextWatcher
@@ -6,7 +6,6 @@ import android.widget.ImageButton
 import androidx.lifecycle.ViewModel
 import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.R
-import com.example.harry_potter_and_retrofit.data.ForumRepositoryImpl
 import com.example.harry_potter_and_retrofit.domain.usecase.SendMessageUseCase
 
 class ForumViewModel(

@@ -1,7 +1,8 @@
-package com.example.harry_potter_and_retrofit.presentation
+package com.example.harry_potter_and_retrofit.presentation.utils
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.harry_potter_and_retrofit.presentation.ui.forumfragment.ForumAdapter
 
 
 class MyScrollToBottomObserver(

@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation.mainfragment
+package com.example.harry_potter_and_retrofit.presentation.ui.mainfragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -14,13 +14,9 @@ class MainViewModelFactory : ViewModelProvider.Factory {
 
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
             val repo = CharacterRepositoryImpl(App.INSTANCE)
-            val uploadCharacterUseCase = UploadCharacterUseCase(repo)
             val getCharacterUseCase = GetCharacterUseCase(repo)
-            val cacheCharacterUseCase = CacheCharacterUseCase(repo)
             return MainViewModel(
-                uploadCharacterUseCase,
                 getCharacterUseCase,
-                cacheCharacterUseCase
             ) as T
         } else {
             throw RuntimeException("Unknown class name")

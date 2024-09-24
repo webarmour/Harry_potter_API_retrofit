@@ -48,41 +48,60 @@ android {
 
 dependencies {
 
+    //Paging
+    implementation("androidx.paging:paging-runtime-ktx:3.3.2")
+
+    //SwipeRefreshLayout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    //FIREBASE
     implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-crashlytics")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-storage")
+    implementation(libs.firebase.messaging.ktx)
+    implementation(libs.firebase.auth)
 
+    //FIREBASE UI
     implementation("com.firebaseui:firebase-ui-auth:7.2.0")
     implementation("com.firebaseui:firebase-ui-database:7.2.0")
 
+    //GOOGLE GMS
     implementation("com.google.android.gms:play-services-auth")
     implementation("com.google.gms:google-services:4.4.2")
 
+    //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
 
-    implementation("com.squareup.moshi:moshi:1.14.0")
-    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
-    implementation(libs.firebase.auth)
-    implementation(libs.androidx.work.runtime.ktx)
-    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
-
-    implementation("com.google.code.gson:gson:2.10.1")
-
+    //Okhttp3
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
+    //Moshi converter
+    implementation("com.squareup.moshi:moshi:1.14.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
+    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
+
+    //Work manager
+    implementation(libs.androidx.work.runtime.ktx)
+
+
+    //Images Coil
     implementation("io.coil-kt:coil:0.13.0")
 
+    //Room database
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
 
+    //fragments
     implementation("androidx.fragment:fragment-ktx:1.8.3")
 
+
+    //jetpack navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.0")
 

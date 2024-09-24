@@ -3,8 +3,8 @@ package com.example.harry_potter_and_retrofit
 import android.app.Application
 import com.example.harry_potter_and_retrofit.data.firebase.FirebaseUtils
 import com.example.harry_potter_and_retrofit.data.localdb.databaase.CharacterDatabase
-import com.example.harry_potter_and_retrofit.presentation.NotificationUtils
-import com.example.harry_potter_and_retrofit.presentation.PermissionUtils
+import com.example.harry_potter_and_retrofit.presentation.utils.NotificationUtils
+import com.example.harry_potter_and_retrofit.presentation.utils.PermissionUtils
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 
 class App : Application() {

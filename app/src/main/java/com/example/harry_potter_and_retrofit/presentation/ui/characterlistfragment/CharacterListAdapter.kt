@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation.characterlistfragment
+package com.example.harry_potter_and_retrofit.presentation.ui.characterlistfragment
 
 import android.view.LayoutInflater
 import android.view.View

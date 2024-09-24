@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation.mainfragment
+package com.example.harry_potter_and_retrofit.presentation.ui.mainfragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,12 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import coil.load
 import com.example.harry_potter_and_retrofit.databinding.FragmentMainBinding
-import com.example.harry_potter_and_retrofit.presentation.ProgressState
-import com.google.firebase.crashlytics.FirebaseCrashlytics
-import kotlinx.coroutines.launch
 
 class MainFragment() : Fragment() {
 

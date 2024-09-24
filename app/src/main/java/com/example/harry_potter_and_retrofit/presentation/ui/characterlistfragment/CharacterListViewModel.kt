@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation.characterlistfragment
+package com.example.harry_potter_and_retrofit.presentation.ui.characterlistfragment
 
 import android.content.ContentValues.TAG
 import android.util.Log
@@ -18,9 +18,9 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class CharacterListViewModel(
-    private val uploadCharacterListUseCase: UploadCharacterListUseCase,
+
     private val getCharacterListUseCase: GetCharacterListUseCase,
-    private val cacheCharacterListUseCase: CacheCharactersListUseCase,
+
 ) : ViewModel() {
 
     private var _isLoading = MutableStateFlow(false)
@@ -54,7 +54,6 @@ class CharacterListViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
                 _isLoading.value = true
-                cacheCharacterListUseCase(uploadCharacterListUseCase())
                 getCharacterListUseCase()
             }.fold(
                 onSuccess = { _characterList.value = it },
@@ -63,6 +62,10 @@ class CharacterListViewModel(
             _isLoading.value = false
 
         }
+    }
+
+    fun refresh() {
+        getCharacters()
     }
 
 

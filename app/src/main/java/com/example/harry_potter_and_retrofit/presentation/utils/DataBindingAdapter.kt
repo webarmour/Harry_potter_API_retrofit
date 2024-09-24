@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation
+package com.example.harry_potter_and_retrofit.presentation.utils
 
 import android.widget.Button
 import android.widget.ImageView
@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import coil.load
+import com.example.harry_potter_and_retrofit.presentation.ui.mainfragment.ProgressState
 
 
 @BindingAdapter("characterNameOfHarryPotter")

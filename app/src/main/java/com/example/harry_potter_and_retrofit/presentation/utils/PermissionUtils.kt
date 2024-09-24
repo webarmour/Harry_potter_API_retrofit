@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation
+package com.example.harry_potter_and_retrofit.presentation.utils
 
 import android.Manifest
 import android.app.Application
@@ -9,12 +9,13 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.harry_potter_and_retrofit.presentation.ui.activities.MainActivity
 
 class PermissionUtils(
     private val application: Application,
 ) {
 
-    private lateinit var mainActivity :MainActivity
+    private lateinit var mainActivity : MainActivity
     private lateinit var launcher:ActivityResultLauncher<Array<String>>
 
 

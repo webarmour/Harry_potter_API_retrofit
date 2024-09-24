@@ -6,12 +6,12 @@
     app:startDestination="@id/nav_room_db">
     <fragment
         android:id="@+id/nav_character"
-        android:name="com.example.harry_potter_and_retrofit.presentation.mainfragment.MainFragment"
+        android:name="com.example.harry_potter_and_retrofit.presentation.ui.mainfragment.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/nav_character_list"
-        android:name="com.example.harry_potter_and_retrofit.presentation.characterlistfragment.CharacterListFragment"
+        android:name="com.example.harry_potter_and_retrofit.presentation.ui.characterlistfragment.CharacterListFragment"
         android:label="fragment_character_list"
         tools:layout="@layout/fragment_character_list" >
         <action
@@ -21,11 +21,11 @@
 
     <fragment
         android:id="@+id/nav_forum"
-        android:name="com.example.harry_potter_and_retrofit.presentation.ForumFragment"
+        android:name="com.example.harry_potter_and_retrofit.presentation.ui.forumfragment.ForumFragment"
         android:label="ForumFragment" />
     <fragment
         android:id="@+id/nav_room_db"
-        android:name="com.example.harry_potter_and_retrofit.presentation.dbfragment.WorkmanagerFragment"
+        android:name="com.example.harry_potter_and_retrofit.presentation.ui.workmanagerfragment.WorkmanagerFragment"
         android:label="WorkManager" />
 
 </navigation>

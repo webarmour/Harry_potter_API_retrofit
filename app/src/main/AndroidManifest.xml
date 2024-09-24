@@ -23,11 +23,11 @@
         android:theme="@style/Theme.Harry_potter_and_retrofit"
         tools:targetApi="31" >
         <activity
-            android:name=".presentation.SignInActivity"
+            android:name=".presentation.ui.activities.SignInActivity"
             android:exported="false"
             android:theme="@style/Theme.Harry_potter_and_retrofit" />
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.ui.activities.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +35,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        <service android:name=".data.firebase.MessagingUtils$MyFirebaseMessagingService1"-->
+<!--            android:exported="false">-->
+<!--        <intent-filter>-->
+<!--            <action android:name ="com.google.firebase.MESSAGING_EVENT"/>-->
+<!--        </intent-filter>-->
+<!--        </service>-->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/potterpng"/>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id"/>
+
     </application>
 
 </manifest>

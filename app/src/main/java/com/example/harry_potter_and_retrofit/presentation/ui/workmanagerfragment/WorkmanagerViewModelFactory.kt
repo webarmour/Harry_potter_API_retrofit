@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.presentation.dbfragment
+package com.example.harry_potter_and_retrofit.presentation.ui.workmanagerfragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
