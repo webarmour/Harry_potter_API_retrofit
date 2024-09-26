@@ -6,6 +6,7 @@ import com.example.harry_potter_and_retrofit.data.localdb.databaase.CharacterDat
 import com.example.harry_potter_and_retrofit.data.network.RetrofitInstance
 import com.example.harry_potter_and_retrofit.data.mapper.CharacterModelMapper
 import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
+import com.example.harry_potter_and_retrofit.domain.repository.CharacterPagingRepository
 import com.example.harry_potter_and_retrofit.domain.repository.CharacterRepository
 
 class CharacterRepositoryImpl(

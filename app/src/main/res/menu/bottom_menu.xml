@@ -23,6 +23,11 @@
         android:icon="@drawable/potterpng"
         android:title="@string/workmanager"/>
 
+    <item
+        android:id="@+id/nav_paging_example"
+        android:icon="@drawable/ic_page"
+        android:title="@string/paging"/>
+
 
 
 </menu>
