@@ -2,7 +2,7 @@ package com.example.harry_potter_and_retrofit.data.firebase
 
 import android.app.Application
 import com.example.harry_potter_and_retrofit.domain.model.ForumItem
-import com.example.harry_potter_and_retrofit.presentation.MainActivity
+import com.example.harry_potter_and_retrofit.presentation.ui.activities.MainActivity
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.database.ktx.database

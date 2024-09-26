@@ -2,14 +2,14 @@ package com.example.harry_potter_and_retrofit.data.firebase
 
 import android.content.Intent
 import com.example.harry_potter_and_retrofit.R
-import com.example.harry_potter_and_retrofit.presentation.MainActivity
-import com.example.harry_potter_and_retrofit.presentation.SignInActivity
+import com.example.harry_potter_and_retrofit.presentation.ui.activities.MainActivity
+import com.example.harry_potter_and_retrofit.presentation.ui.activities.SignInActivity
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class AuthUtils(
-   private val mainActivity: MainActivity,
+    private val mainActivity: MainActivity,
 ) {
 
     private val auth = Firebase.auth
