@@ -17,6 +17,11 @@ class CharacterPagingListAdapter :
 
     class PagingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = PagingItemBinding.bind(view)
+        fun bind(character: CharacterPagingItem){
+            binding.tvCharacterName.text = character.name
+            binding.tvHogwartsHouse.text = character.hogwartsHouse
+            binding.imCharacter.load(character.imageUrl)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagingViewHolder {
@@ -26,16 +31,7 @@ class CharacterPagingListAdapter :
 
     override fun onBindViewHolder(holder: PagingViewHolder, position: Int) {
         val item = getItem(position)
-        item?.imageUrl?.let {
-            holder.binding.imCharacter.load(it)
-        }
-        item?.name?.let {
-            holder.binding.tvCharacterName.text = it
-        }
-        item?.hogwartsHouse?.let {
-            holder.binding.tvHogwartsHouse.text = it
-        }
-
+        item?.let { holder.bind(it) }
 
     }
 

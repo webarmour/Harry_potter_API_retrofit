@@ -27,7 +27,6 @@ class PagingFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // TODO: Use the ViewModel
     }
 
     override fun onCreateView(
@@ -49,6 +48,7 @@ class PagingFragment : Fragment() {
             }
 
         }
+
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 adapter.loadStateFlow.collect{

@@ -6,7 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.harry_potter_and_retrofit.data.paging.CharacterPagingRepository
+import com.example.harry_potter_and_retrofit.data.paging.repoimpl.CharacterPagingRepository
 import com.example.harry_potter_and_retrofit.domain.model.CharacterPagingItem
 import kotlinx.coroutines.flow.Flow
 
@@ -23,6 +23,6 @@ class PagingViewModel() : ViewModel() {
 
 
     companion object {
-        private const val ITEMS_PER_PAGE = 50
+        private const val ITEMS_PER_PAGE = 100
     }
 }
