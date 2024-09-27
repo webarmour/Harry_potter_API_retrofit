@@ -11,9 +11,10 @@ import com.example.harry_potter_and_retrofit.domain.repository.CharacterReposito
 
 class CharacterRepositoryImpl(
     application: Application,
+    private val mapper : CharacterModelMapper
+
 ) : CharacterRepository {
 
-    private val mapper = CharacterModelMapper()
     private val charactersDao = CharacterDatabase
         .getInstance(application).getCharacterDao()
 
