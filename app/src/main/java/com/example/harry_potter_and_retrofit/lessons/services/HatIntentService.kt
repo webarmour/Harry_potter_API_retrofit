@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.lessons
+package com.example.harry_potter_and_retrofit.lessons.services
 
 import android.app.IntentService
 import android.app.Notification
@@ -7,13 +7,10 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.example.harry_potter_and_retrofit.R
-import kotlinx.coroutines.cancel
-
-private const val TAG = "HatIntentService"
+import com.example.harry_potter_and_retrofit.lessons.TAG
 
 class HatIntentService : IntentService(SERVICE_NAME) {
 
@@ -47,7 +44,7 @@ class HatIntentService : IntentService(SERVICE_NAME) {
 
     fun createChannelForNotification() {
         val notificationManager =
-            application.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            application.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Channel for foreground service"

@@ -2,25 +2,22 @@ package com.example.harry_potter_and_retrofit.presentation.ui.pagingfragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.harry_potter_and_retrofit.data.paging.repoimpl.CharacterPagingRepository
-import com.example.harry_potter_and_retrofit.domain.model.CharacterPagingItem
-import kotlinx.coroutines.flow.Flow
+import com.example.harry_potter_and_retrofit.data.paging.repoimpl.CharacterPagingRepositoryImpl
+import com.example.harry_potter_and_retrofit.domain.usecase.GetCharacterPagerUseCase
 
 class PagingViewModel() : ViewModel() {
 
-    val repo = CharacterPagingRepository()
 
-    val items: Flow<PagingData<CharacterPagingItem>> = Pager(
-        config = PagingConfig(ITEMS_PER_PAGE, enablePlaceholders = false),
-        pagingSourceFactory = { repo.characterPagingSource() }
-    )
+    val usecase = GetCharacterPagerUseCase(CharacterPagingRepositoryImpl())
+
+    val items = usecase()
         .flow
         .cachedIn(viewModelScope)
 
+    fun getCharacterPage() {
+        usecase()
+    }
 
     companion object {
         private const val ITEMS_PER_PAGE = 100

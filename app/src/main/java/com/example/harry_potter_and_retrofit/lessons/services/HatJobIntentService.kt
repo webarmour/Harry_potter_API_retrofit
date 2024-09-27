@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.lessons
+package com.example.harry_potter_and_retrofit.lessons.services
 
 import android.app.Application
 import android.content.Context
@@ -6,17 +6,16 @@ import android.content.Intent
 import android.util.Log
 import androidx.core.app.JobIntentService
 
-private const val TAG = "HatJobIntentService"
 class HatJobIntentService: JobIntentService() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.d(TAG, "onCreate: ")
+        Log.d(com.example.harry_potter_and_retrofit.lessons.TAG, "onCreate: ")
     }
-    
-    
+
+
     override fun onHandleWork(intent: Intent) {
-        Log.d(TAG, "onHandleWork: ")
+        Log.d(com.example.harry_potter_and_retrofit.lessons.TAG, "onHandleWork: ")
         (1..100).forEach {
             Thread.sleep(3000)
             val house = arrayOf(
@@ -26,13 +25,13 @@ class HatJobIntentService: JobIntentService() {
                 "Ravenclaw"
             ).random()
 
-            Log.d(TAG, "Strudent $it goes to $house")
+            Log.d(com.example.harry_potter_and_retrofit.lessons.TAG, "Strudent $it goes to $house")
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(TAG, "onDestroy: ")
+        Log.d(com.example.harry_potter_and_retrofit.lessons.TAG, "onDestroy: ")
     }
 
     companion object {

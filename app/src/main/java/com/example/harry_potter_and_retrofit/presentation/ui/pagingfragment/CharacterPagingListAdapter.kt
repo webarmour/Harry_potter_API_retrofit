@@ -18,9 +18,17 @@ class CharacterPagingListAdapter :
     class PagingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = PagingItemBinding.bind(view)
         fun bind(character: CharacterPagingItem){
+            if (character.imageUrl != null) {
+                binding.imCharacter.load(character.imageUrl)
+            } else {
+                binding.imCharacter.load(R.drawable.ic_face)
+            }
+            character.imageUrl.let {
+
+            }
             binding.tvCharacterName.text = character.name
             binding.tvHogwartsHouse.text = character.hogwartsHouse
-            binding.imCharacter.load(character.imageUrl)
+
         }
     }
 

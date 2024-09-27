@@ -1,4 +1,4 @@
-package com.example.harry_potter_and_retrofit.lessons
+package com.example.harry_potter_and_retrofit.lessons.services
 
 import android.content.Context
 import android.util.Log
@@ -10,12 +10,10 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import com.example.harry_potter_and_retrofit.App
+import com.example.harry_potter_and_retrofit.lessons.TAG
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
-
-
-private const val TAG = "HatWorkManager"
 
 class HatWorkManager(
     context: Context,

@@ -1,18 +1,16 @@
-package com.example.harry_potter_and_retrofit.lessons
+package com.example.harry_potter_and_retrofit.lessons.services
 
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import android.util.Log
+import com.example.harry_potter_and_retrofit.lessons.TAG
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
-
-private const val TAG = "SortingHatService"
 
 class MyService: Service() {
 

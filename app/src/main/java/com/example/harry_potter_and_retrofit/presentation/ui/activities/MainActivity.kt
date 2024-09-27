@@ -11,6 +11,7 @@ import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.R
 import com.example.harry_potter_and_retrofit.data.firebase.MessagingUtils
 import com.example.harry_potter_and_retrofit.databinding.ActivityMainWithDrawerBinding
+import com.example.harry_potter_and_retrofit.lessons.dagger.TripToHogwarts
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +23,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainWithDrawerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val tripToHogwarts = TripToHogwarts()
+
         App.INSTANCE.permissionsService.iniMainActivity(this)
         App.INSTANCE.permissionsService.checkPermissions()
 
