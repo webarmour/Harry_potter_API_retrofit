@@ -5,15 +5,18 @@ import com.example.harry_potter_and_retrofit.R
 import com.example.harry_potter_and_retrofit.presentation.ui.activities.MainActivity
 import com.example.harry_potter_and_retrofit.presentation.ui.activities.SignInActivity
 import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class AuthUtils(
     private val mainActivity: MainActivity,
+    private val auth : FirebaseAuth,
+    private val authUI : AuthUI
 ) {
 
-    private val auth = Firebase.auth
-    private val authUI = AuthUI.getInstance()
+//    private val auth = Firebase.auth
+
 
     private fun isDoneAuth() = auth.currentUser != null
     private val signInActivityClass = SignInActivity::class.java
