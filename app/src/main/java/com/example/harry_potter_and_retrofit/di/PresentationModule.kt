@@ -26,12 +26,12 @@ class PresentationModule() {
 
 
     @Provides
-    fun providesViewModel(getCharacterUseCase: GetCharacterUseCase): MainViewModel {
+    fun providesMainViewModel(getCharacterUseCase: GetCharacterUseCase): MainViewModel {
         return MainViewModel(getCharacterUseCase)
     }
 
     @Provides
-    fun provideCharacterListViewModelFactory(mainViewModel: MainViewModel): MainViewModelFactory {
+    fun provideMainViewModelFactory(mainViewModel: MainViewModel): MainViewModelFactory {
         return MainViewModelFactory(mainViewModel)
     }
 }

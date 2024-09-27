@@ -2,6 +2,7 @@ package com.example.harry_potter_and_retrofit.data
 
 
 import android.app.Application
+import com.example.harry_potter_and_retrofit.data.localdb.dao.Dao
 import com.example.harry_potter_and_retrofit.data.localdb.databaase.CharacterDatabase
 import com.example.harry_potter_and_retrofit.data.network.RetrofitInstance
 import com.example.harry_potter_and_retrofit.data.mapper.CharacterModelMapper
@@ -11,12 +12,12 @@ import com.example.harry_potter_and_retrofit.domain.repository.CharacterReposito
 
 class CharacterRepositoryImpl(
     application: Application,
-    private val mapper : CharacterModelMapper
+    private val mapper : CharacterModelMapper,
+    private val charactersDao: Dao
 
 ) : CharacterRepository {
 
-    private val charactersDao = CharacterDatabase
-        .getInstance(application).getCharacterDao()
+
 
     //Network
 
