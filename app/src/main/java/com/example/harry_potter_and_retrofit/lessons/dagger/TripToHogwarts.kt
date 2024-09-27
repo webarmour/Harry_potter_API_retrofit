@@ -1,7 +1,10 @@
 package com.example.harry_potter_and_retrofit.lessons.dagger
 
-class TripToHogwarts {
+import javax.inject.Inject
 
-    val freshmanSet = FreshmanSet()
-    val ticket = Ticket()
+class TripToHogwarts (
+    freshmanSet: FreshmanSet,
+    ticket: Ticket,
+) {
+
 }

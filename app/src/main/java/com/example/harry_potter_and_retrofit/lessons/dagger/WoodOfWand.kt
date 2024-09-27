@@ -1,5 +1,7 @@
 package com.example.harry_potter_and_retrofit.lessons.dagger
 
-class WoodOfWand {
+import javax.inject.Inject
+
+class WoodOfWand @Inject constructor() {
 
 }

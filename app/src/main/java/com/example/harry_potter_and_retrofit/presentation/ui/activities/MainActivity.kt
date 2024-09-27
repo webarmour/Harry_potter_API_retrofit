@@ -11,12 +11,17 @@ import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.R
 import com.example.harry_potter_and_retrofit.data.firebase.MessagingUtils
 import com.example.harry_potter_and_retrofit.databinding.ActivityMainWithDrawerBinding
+import com.example.harry_potter_and_retrofit.lessons.dagger.DaggerComponent2
 import com.example.harry_potter_and_retrofit.lessons.dagger.TripToHogwarts
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainWithDrawerBinding
     private lateinit var navController: NavController
+
+    @Inject
+    lateinit var tripToHogwarts: TripToHogwarts
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -24,7 +29,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainWithDrawerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val tripToHogwarts = TripToHogwarts()
+        DaggerComponent2.create().inject(this)
+        tripToHogwarts.toString()
 
         App.INSTANCE.permissionsService.iniMainActivity(this)
         App.INSTANCE.permissionsService.checkPermissions()
@@ -66,8 +72,6 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
 
     }
-
-
 
 
     private fun initAuth() {

@@ -48,6 +48,10 @@ android {
 
 dependencies {
 
+    //Dagger
+    implementation("com.google.dagger:dagger:2.47")
+    ksp("com.google.dagger:dagger-compiler:2.47")
+
     //Paging
     implementation("androidx.paging:paging-runtime-ktx:3.3.2")
 

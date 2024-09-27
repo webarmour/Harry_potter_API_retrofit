@@ -1,8 +1,8 @@
 package com.example.harry_potter_and_retrofit.lessons.dagger
 
-class MagicWand {
+import javax.inject.Inject
 
-    val coreOfWand = CoreOfWand()
-    val woodOfWand = WoodOfWand()
-
-}
+class MagicWand @Inject constructor(
+    coreOfWand: CoreOfWand,
+    woodOfWand: WoodOfWand,
+)

@@ -1,5 +1,7 @@
 package com.example.harry_potter_and_retrofit.lessons.dagger
 
-class Ticket {
+import javax.inject.Inject
+
+class Ticket{
 
 }
