@@ -10,29 +10,14 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class AuthUtils(
-    private val mainActivity: MainActivity,
-    private val auth : FirebaseAuth,
-    private val authUI : AuthUI
+    val auth : FirebaseAuth,
+    val authUI : AuthUI
 ) {
 
 //    private val auth = Firebase.auth
 
 
-    private fun isDoneAuth() = auth.currentUser != null
-    private val signInActivityClass = SignInActivity::class.java
 
-
-    fun signUpIn() {
-        if (!isDoneAuth()) {
-            val intent = Intent(mainActivity, signInActivityClass)
-            mainActivity.startActivity(intent)
-            mainActivity.finish()
-        }
-    }
-
-    fun signOut() {
-        authUI.signOut(mainActivity)
-    }
 
     fun getUserName() = auth.currentUser?.displayName ?: ANONYMOUS
 

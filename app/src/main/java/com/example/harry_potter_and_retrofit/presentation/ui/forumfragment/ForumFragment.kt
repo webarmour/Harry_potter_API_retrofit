@@ -12,7 +12,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.databinding.FragmentForumBinding
+import com.example.harry_potter_and_retrofit.di.ContextModule
+import com.example.harry_potter_and_retrofit.di.DaggerApplicationComponent
 import com.example.harry_potter_and_retrofit.presentation.ui.activities.MainActivity
 import com.example.harry_potter_and_retrofit.presentation.utils.MyScrollToBottomObserver
 import com.google.firebase.ktx.Firebase
@@ -20,8 +23,11 @@ import com.google.firebase.storage.ktx.storage
 
 class ForumFragment : Fragment() {
 
-    private val viewModel: ForumViewModel by viewModels{
-        ForumViewModelFactory()
+    private val viewModel: ForumViewModel by viewModels {
+        DaggerApplicationComponent.builder()
+            .contextModule(ContextModule(App.INSTANCE))
+            .build()
+            .forumFragmentViewModelFactory()
     }
 
     private var _binding: FragmentForumBinding? = null

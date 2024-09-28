@@ -30,7 +30,6 @@ class SignInActivity : AppCompatActivity() {
 
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        authUtils = AuthUtils(MainActivity())
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

@@ -12,8 +12,8 @@ import com.google.firebase.ktx.Firebase
 
 class FirebaseUtils(
     private val dbFirebase: FirebaseDatabase,
-    private val crashlytics: FirebaseCrashlytics,
-    private val authUtils: AuthUtils
+    internal val crashlytics: FirebaseCrashlytics,
+    internal val authUtils: AuthUtils
 
 ) {
 
@@ -32,9 +32,6 @@ class FirebaseUtils(
             .setQuery(forumReference, ForumItem::class.java)
             .build()
 
-//    fun initAuthUtils(mainActivity: MainActivity) {
-//        authUtils = AuthUtils(mainActivity)
-//    }
 
 
     companion object {

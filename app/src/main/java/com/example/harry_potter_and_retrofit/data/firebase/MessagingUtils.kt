@@ -15,10 +15,12 @@ import java.util.Date
 import java.util.Locale
 import kotlin.random.Random
 
-class MessagingUtils {
+class MessagingUtils(
+    private val msgInstance : FirebaseMessaging
+) {
 
 
-    private val msgInstance = FirebaseMessaging.getInstance()
+//    private val msgInstance = FirebaseMessaging.getInstance()
 
 
     fun logToken(tag: String = "messageToken") {
