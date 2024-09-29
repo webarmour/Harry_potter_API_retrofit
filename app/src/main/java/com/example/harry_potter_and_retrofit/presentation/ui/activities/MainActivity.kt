@@ -1,5 +1,6 @@
 package com.example.harry_potter_and_retrofit.presentation.ui.activities
 
+import android.app.NotificationManager
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainWithDrawerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        makeNotification("TEXT")
+
 
 
         App.INSTANCE.permissionsService.iniMainActivity(this)
@@ -58,6 +62,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+    fun makeNotification(notificationContent: String) {
+        App.INSTANCE.notificationService.showNewNotification(
+            notificationContentText = notificationContent,
+            notificationTitle = "Caching",
+            channelImportance = NotificationManager.IMPORTANCE_MAX
+        )
     }
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()

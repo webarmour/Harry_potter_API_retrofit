@@ -17,9 +17,7 @@ class MainFragment() : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: MainViewModel by viewModels{
-        DaggerApplicationComponent.builder()
-            .contextModule(ContextModule(App.INSTANCE))
-            .build().mainFragmentViewModelFactory()
+        App.INSTANCE.appComponent.mainFragmentViewModelFactory()
     }
 
 

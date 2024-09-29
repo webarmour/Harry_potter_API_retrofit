@@ -57,10 +57,6 @@ class FirebaseModule {
         return FirebaseUtils(firebaseDatabase, firebaseCrashlytics, firebaseAuthUtils)
     }
 
-    @Provides
-    fun providesFirebaseMessaging(): FirebaseMessaging {
-        return FirebaseMessaging.getInstance()
-    }
 
     @Provides
     fun providesForumRepoImpl(

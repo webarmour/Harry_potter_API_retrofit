@@ -22,10 +22,7 @@ class CharacterListFragment : Fragment() {
 
 
     private val viewModel: CharacterListViewModel by viewModels {
-        DaggerApplicationComponent.builder()
-            .contextModule(ContextModule(App.INSTANCE))
-            .build()
-            .characterListViewModelFactory()
+        App.INSTANCE.appComponent.characterListViewModelFactory()
     }
 
 

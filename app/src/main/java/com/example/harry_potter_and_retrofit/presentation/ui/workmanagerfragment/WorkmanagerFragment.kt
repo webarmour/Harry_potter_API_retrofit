@@ -4,14 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.work.WorkInfo
+import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.databinding.FragmentWorkmanagerBinding
+import com.example.harry_potter_and_retrofit.di.ContextModule
+import com.example.harry_potter_and_retrofit.di.DaggerApplicationComponent
+import com.example.harry_potter_and_retrofit.presentation.worker.CachingDataWorker
 
 class WorkmanagerFragment : Fragment() {
 
     private val viewModel: WorkmanagerViewModel by viewModels {
-        WorkmanagerViewModelFactory()
+        App.INSTANCE.appComponent.workmanagerViewModelFactory()
     }
 
 
@@ -41,6 +47,19 @@ class WorkmanagerFragment : Fragment() {
         }
         binding.btStop.setOnClickListener {
             viewModel.stopService()
+        }
+
+        viewModel.progressWorkInfoItems.observe(viewLifecycleOwner){
+            if (!it.isNullOrEmpty()){
+                it.forEach {
+                    if (it.state == WorkInfo.State.RUNNING){
+                        val progressValue = it.progress.getInt(CachingDataWorker.PROGRESS, 0)
+                        binding.progressBar.progress = progressValue
+                    }
+                    binding.progressBar.isVisible = !it.state.isFinished
+                }
+            }
+
         }
 
     }

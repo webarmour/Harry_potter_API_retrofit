@@ -9,10 +9,10 @@ import com.example.harry_potter_and_retrofit.domain.model.CharacterPagingItem
 import kotlin.math.max
 import kotlin.math.min
 
-class CharacterPagingSource : PagingSource<Int, CharacterPagingItem>() {
+class CharacterPagingSource(
+    private val mapper: CharacterPagingMapper,
+) : PagingSource<Int, CharacterPagingItem>() {
 
-    private val api = RetrofitInstance
-    private val mapper = CharacterPagingMapper()
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CharacterPagingItem> {
         val page = params.key ?: STARTING_KEY
@@ -20,18 +20,22 @@ class CharacterPagingSource : PagingSource<Int, CharacterPagingItem>() {
 
 
         return runCatching {
-          mapper.characterDtoToPaging(
-              api.searchCharactersPagingApi.getCharacters(page).data
-          )
+            mapper.characterDtoToPaging(
+                RetrofitInstance.searchCharactersPagingApi.getCharacters(page).data
+            )
         }.fold(
-            onSuccess = {LoadResult.Page(
-                data = it,
-                prevKey = null,
-                nextKey = if(page == LAST_PAGE) null else ensureValidKey(page+1)
-            )},
-            onFailure = {LoadResult.Error(
-                it
-            )},
+            onSuccess = {
+                LoadResult.Page(
+                    data = it,
+                    prevKey = null,
+                    nextKey = if (page == LAST_PAGE) null else ensureValidKey(page + 1)
+                )
+            },
+            onFailure = {
+                LoadResult.Error(
+                    it
+                )
+            },
         )
     }
 

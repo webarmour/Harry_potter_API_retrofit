@@ -44,6 +44,15 @@ class PermissionUtils(
         }
     }
 
+    class PermissionsService(private val application: Application) {
+        fun checkPermissionForNotification(): Boolean {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                return application.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
+            }
+            return true
+        }
+    }
+
     fun iniMainActivity(mainActivity: MainActivity){
         this.mainActivity = mainActivity
         this.launcher = mainActivity.registerForActivityResult(

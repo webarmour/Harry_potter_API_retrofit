@@ -24,10 +24,7 @@ import com.google.firebase.storage.ktx.storage
 class ForumFragment : Fragment() {
 
     private val viewModel: ForumViewModel by viewModels {
-        DaggerApplicationComponent.builder()
-            .contextModule(ContextModule(App.INSTANCE))
-            .build()
-            .forumFragmentViewModelFactory()
+        App.INSTANCE.appComponent.forumFragmentViewModelFactory()
     }
 
     private var _binding: FragmentForumBinding? = null
