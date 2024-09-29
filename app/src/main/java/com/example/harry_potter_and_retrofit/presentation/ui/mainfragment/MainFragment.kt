@@ -8,16 +8,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.databinding.FragmentMainBinding
-import com.example.harry_potter_and_retrofit.di.ContextModule
-import com.example.harry_potter_and_retrofit.di.DaggerApplicationComponent
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainFragment() : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
+    @Inject
+    lateinit var VMFactory:MainViewModelFactory
+
     private val viewModel: MainViewModel by viewModels{
-        App.INSTANCE.appComponent.mainFragmentViewModelFactory()
+        VMFactory
     }
 
 

@@ -1,12 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("com.google.devtools.ksp") version "2.0.0-1.0.23"
+    id("com.google.devtools.ksp")
     id("kotlin-parcelize")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -40,17 +41,47 @@ android {
         jvmTarget = "1.8"
     }
 
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.0"
+    }
+
+
     buildFeatures {
         dataBinding = true
         viewBinding = true
+        compose = true
     }
 }
 
-dependencies {
 
-    //Dagger
-    implementation("com.google.dagger:dagger:2.47")
-    ksp("com.google.dagger:dagger-compiler:2.47")
+dependencies {
+    //Compose
+    val composeBom = platform("androidx.compose:compose-bom:2024.09.02")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material")
+    implementation("androidx.compose.foundation:foundation")
+    implementation("androidx.compose.ui:ui")
+    // Android Studio Preview support
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+
+
+    //TESTS
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
+    testImplementation("org.mockito:mockito-core:4.0.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+
+    //Hilt
+    implementation("com.google.dagger:hilt-android:2.47")
+    implementation(libs.androidx.hilt.common)
+    implementation(libs.androidx.hilt.work)
+    ksp("com.google.dagger:hilt-compiler:2.47")
+
+//    //Dagger
+//    implementation("com.google.dagger:dagger:2.47")
+//    ksp("com.google.dagger:dagger-compiler:2.47")
 
     //Paging
     implementation("androidx.paging:paging-runtime-ktx:3.3.2")

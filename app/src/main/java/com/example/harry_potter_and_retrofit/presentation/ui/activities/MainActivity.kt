@@ -12,9 +12,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.R
 import com.example.harry_potter_and_retrofit.databinding.ActivityMainWithDrawerBinding
-import com.example.harry_potter_and_retrofit.di.DaggerApplicationComponent
-import com.example.harry_potter_and_retrofit.di.FirebaseModule
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainWithDrawerBinding
@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
     fun makeNotification(notificationContent: String) {
         App.INSTANCE.notificationService.showNewNotification(
             notificationContentText = notificationContent,
@@ -70,14 +71,14 @@ class MainActivity : AppCompatActivity() {
             channelImportance = NotificationManager.IMPORTANCE_MAX
         )
     }
+
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
 
     }
 
-    private fun isDoneAuth()=
+    private fun isDoneAuth() =
         App.INSTANCE.firebaseInstance.authUtils.auth.currentUser != null
-
 
 
     private fun signUpIn() {
@@ -91,11 +92,6 @@ class MainActivity : AppCompatActivity() {
     fun signOut() {
         App.INSTANCE.firebaseInstance.authUtils.authUI.signOut(this)
     }
-
-
-
-
-
 
 
 }

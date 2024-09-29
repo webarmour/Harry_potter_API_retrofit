@@ -2,8 +2,9 @@ package com.example.harry_potter_and_retrofit.presentation.ui.forumfragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import javax.inject.Inject
 
-class ForumViewModelFactory(
+class ForumViewModelFactory @Inject constructor(
     private val forumViewModel: ForumViewModel,
     ) :
     ViewModelProvider.Factory {

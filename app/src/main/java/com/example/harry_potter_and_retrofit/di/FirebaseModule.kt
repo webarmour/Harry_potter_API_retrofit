@@ -19,65 +19,65 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.Module
 import dagger.Provides
-
-@Module
+//
+//@Module
 class FirebaseModule {
-
-    @Provides
-    fun providesDbFirebase(): FirebaseDatabase {
-        return Firebase.database
-    }
-
-    @Provides
-    fun providesFirebaseCrashlytics(): FirebaseCrashlytics {
-        return Firebase.crashlytics
-    }
-
-    @Provides
-    fun providesFirebaseAuth(): FirebaseAuth {
-        return Firebase.auth
-    }
-
-    @Provides
-    fun providesAuthUI(): AuthUI {
-        return AuthUI.getInstance()
-    }
-
-    @Provides
-    fun providesAuthUtils(auth: FirebaseAuth, authUI: AuthUI): AuthUtils {
-        return AuthUtils(auth, authUI)
-    }
-
-    @Provides
-    fun provideFirebaseUtils(
-        firebaseDatabase: FirebaseDatabase,
-        firebaseCrashlytics: FirebaseCrashlytics,
-        firebaseAuthUtils: AuthUtils,
-    ): FirebaseUtils {
-        return FirebaseUtils(firebaseDatabase, firebaseCrashlytics, firebaseAuthUtils)
-    }
-
-
-    @Provides
-    fun providesForumRepoImpl(
-        application: Application,
-        firebaseUtils: FirebaseUtils,
-    ): ForumRepositoryImpl {
-        return ForumRepositoryImpl(application, firebaseUtils)
-    }
-
-    @Provides
-    fun provideSendMessageUseCase(forumRepository: ForumRepository): SendMessageUseCase {
-        return SendMessageUseCase(forumRepository)
-    }
-
-    @Provides
-    fun providesForumVieModel(sendMessageUseCase: SendMessageUseCase): ForumViewModel {
-        return ForumViewModel(sendMessageUseCase)
-    }
-
-    @Provides
-    fun provideForumViewModelFactory(forumViewModel: ForumViewModel): ForumViewModelFactory {
-        return ForumViewModelFactory(forumViewModel)
-    }
+//
+//    @Provides
+//    fun providesDbFirebase(): FirebaseDatabase {
+//        return Firebase.database
+//    }
+//
+//    @Provides
+//    fun providesFirebaseCrashlytics(): FirebaseCrashlytics {
+//        return Firebase.crashlytics
+//    }
+//
+//    @Provides
+//    fun providesFirebaseAuth(): FirebaseAuth {
+//        return Firebase.auth
+//    }
+//
+//    @Provides
+//    fun providesAuthUI(): AuthUI {
+//        return AuthUI.getInstance()
+//    }
+//
+//    @Provides
+//    fun providesAuthUtils(auth: FirebaseAuth, authUI: AuthUI): AuthUtils {
+//        return AuthUtils(auth, authUI)
+//    }
+//
+//    @Provides
+//    fun provideFirebaseUtils(
+//        firebaseDatabase: FirebaseDatabase,
+//        firebaseCrashlytics: FirebaseCrashlytics,
+//        firebaseAuthUtils: AuthUtils,
+//    ): FirebaseUtils {
+//        return FirebaseUtils(firebaseDatabase, firebaseCrashlytics, firebaseAuthUtils)
+//    }
+//
+//
+//    @Provides
+//    fun providesForumRepoImpl(
+//        application: Application,
+//        firebaseUtils: FirebaseUtils,
+//    ): ForumRepositoryImpl {
+//        return ForumRepositoryImpl(application, firebaseUtils)
+//    }
+//
+//    @Provides
+//    fun provideSendMessageUseCase(forumRepository: ForumRepository): SendMessageUseCase {
+//        return SendMessageUseCase(forumRepository)
+//    }
+//
+//    @Provides
+//    fun providesForumVieModel(sendMessageUseCase: SendMessageUseCase): ForumViewModel {
+//        return ForumViewModel(sendMessageUseCase)
+//    }
+//
+//    @Provides
+//    fun provideForumViewModelFactory(forumViewModel: ForumViewModel): ForumViewModelFactory {
+//        return ForumViewModelFactory(forumViewModel)
+//    }
 }

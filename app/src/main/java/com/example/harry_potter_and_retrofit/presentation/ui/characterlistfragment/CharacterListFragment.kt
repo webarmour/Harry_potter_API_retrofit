@@ -1,6 +1,5 @@
 package com.example.harry_potter_and_retrofit.presentation.ui.characterlistfragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,20 +9,25 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.databinding.FragmentCharacterListBinding
-import com.example.harry_potter_and_retrofit.di.ContextModule
-import com.example.harry_potter_and_retrofit.di.DaggerApplicationComponent
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class CharacterListFragment : Fragment() {
 
     private var _binding: FragmentCharacterListBinding? = null
     private val binding get() = _binding!!
     private lateinit var adatper: CharacterListAdapter
 
+    @Inject
+    lateinit var VMFactory: CharacterListViewModelFactory
+
 
     private val viewModel: CharacterListViewModel by viewModels {
-        App.INSTANCE.appComponent.characterListViewModelFactory()
+        VMFactory
     }
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

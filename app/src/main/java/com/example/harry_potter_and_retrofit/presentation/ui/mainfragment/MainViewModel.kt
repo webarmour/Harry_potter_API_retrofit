@@ -5,15 +5,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
 import com.example.harry_potter_and_retrofit.domain.usecase.GetCharacterUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(
+
+class MainViewModel @Inject constructor(
 
     private val getCharacterUseCase: GetCharacterUseCase,
 
-) : ViewModel() {
+    ) : ViewModel() {
 
     private var _state = MutableStateFlow<ProgressState>(ProgressState.Success)
     var state = _state.asStateFlow()

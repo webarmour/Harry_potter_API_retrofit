@@ -7,8 +7,11 @@ import androidx.lifecycle.ViewModel
 import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.R
 import com.example.harry_potter_and_retrofit.domain.usecase.SendMessageUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ForumViewModel(
+
+class ForumViewModel @Inject constructor(
     private val sendMessageUseCase: SendMessageUseCase,
 ) : ViewModel() {
 

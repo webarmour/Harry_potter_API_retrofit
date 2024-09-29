@@ -2,8 +2,9 @@ package com.example.harry_potter_and_retrofit.presentation.ui.characterlistfragm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import javax.inject.Inject
 
-class CharacterListViewModelFactory(private val characterListViewModel: CharacterListViewModel) :
+class CharacterListViewModelFactory @Inject constructor(private val characterListViewModel: CharacterListViewModel) :
     ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

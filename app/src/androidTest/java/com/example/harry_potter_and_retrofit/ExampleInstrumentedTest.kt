@@ -21,4 +21,11 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.harry_potter_and_retrofit", appContext.packageName)
     }
+
+    @Test
+    fun test1(){
+
+    }
+
+    
 }

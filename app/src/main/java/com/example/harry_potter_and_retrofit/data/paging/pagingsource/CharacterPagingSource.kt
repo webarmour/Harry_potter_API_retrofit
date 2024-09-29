@@ -6,10 +6,11 @@ import androidx.paging.PagingState
 import com.example.harry_potter_and_retrofit.data.paging.api.RetrofitInstance
 import com.example.harry_potter_and_retrofit.data.paging.mapper.CharacterPagingMapper
 import com.example.harry_potter_and_retrofit.domain.model.CharacterPagingItem
+import javax.inject.Inject
 import kotlin.math.max
 import kotlin.math.min
 
-class CharacterPagingSource(
+class CharacterPagingSource @Inject constructor(
     private val mapper: CharacterPagingMapper,
 ) : PagingSource<Int, CharacterPagingItem>() {
 

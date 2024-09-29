@@ -2,6 +2,7 @@ package com.example.harry_potter_and_retrofit.presentation.worker
 
 import android.app.NotificationManager
 import android.content.Context
+import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
@@ -9,9 +10,10 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import com.example.harry_potter_and_retrofit.App
-import com.example.harry_potter_and_retrofit.data.CharacterRepositoryImpl
 import com.example.harry_potter_and_retrofit.domain.usecase.CacheCharactersListUseCase
 import com.example.harry_potter_and_retrofit.domain.usecase.UploadCharacterListUseCase
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -19,9 +21,10 @@ import kotlinx.coroutines.withContext
 
 private const val TAG = "CachingDataWorker"
 
-class CachingDataWorker(
-    context: Context,
-    workerParameters: WorkerParameters,
+@HiltWorker
+class CachingDataWorker @AssistedInject constructor(
+    @Assisted context: Context,
+    @Assisted workerParameters: WorkerParameters,
     private val uploadDataUseCase: UploadCharacterListUseCase,
     private val cacheCharactersListUseCase: CacheCharactersListUseCase,
 ) : CoroutineWorker(context, workerParameters) {

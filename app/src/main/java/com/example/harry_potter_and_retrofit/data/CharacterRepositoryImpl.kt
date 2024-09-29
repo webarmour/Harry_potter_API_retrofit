@@ -1,22 +1,17 @@
 package com.example.harry_potter_and_retrofit.data
 
 
-import android.app.Application
 import com.example.harry_potter_and_retrofit.data.localdb.dao.Dao
-import com.example.harry_potter_and_retrofit.data.localdb.databaase.CharacterDatabase
-import com.example.harry_potter_and_retrofit.data.network.RetrofitInstance
 import com.example.harry_potter_and_retrofit.data.mapper.CharacterModelMapper
+import com.example.harry_potter_and_retrofit.data.network.RetrofitInstance
 import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
-import com.example.harry_potter_and_retrofit.domain.repository.CharacterPagingRepository
 import com.example.harry_potter_and_retrofit.domain.repository.CharacterRepository
+import javax.inject.Inject
 
-class CharacterRepositoryImpl(
-    application: Application,
-    private val mapper : CharacterModelMapper,
-    private val charactersDao: Dao
-
+class CharacterRepositoryImpl @Inject constructor(
+    private val mapper: CharacterModelMapper,
+    private val charactersDao: Dao,
 ) : CharacterRepository {
-
 
 
     //Network
@@ -42,7 +37,7 @@ class CharacterRepositoryImpl(
         charactersDao.insertCharacterList(mapper.mapListModelToDtoListModel(characterList))
 
     override suspend fun getCharacterFromLocalDb(id: Int): CharacterItem {
-      return mapper.mapDbModelToModel(charactersDao.getCharacterById(id))
+        return mapper.mapDbModelToModel(charactersDao.getCharacterById(id))
     }
 
     override suspend fun getCharacterListFromLocalDb(): List<CharacterItem> {
