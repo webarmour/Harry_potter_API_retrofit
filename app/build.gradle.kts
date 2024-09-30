@@ -8,6 +8,7 @@ plugins {
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -126,6 +127,9 @@ dependencies {
 
     //Images Coil
     implementation("io.coil-kt:coil:0.13.0")
+
+    //Images Coil Compose
+    implementation("io.coil-kt:coil-compose:2.4.0")
 
     //Room database
     implementation("androidx.room:room-runtime:2.6.1")
