@@ -12,20 +12,20 @@ import dagger.Module
 //@Module
 interface BindImpls {
 
-//    @Binds
-//    fun bindCharacterRepository(
-//        characterRepositoryImpl: CharacterRepositoryImpl,
-//    ): CharacterRepository
-//
-//    @Binds
-//    fun bindForumRepository(
-//        forumImpl: ForumRepositoryImpl,
-//    ): ForumRepository
-//
-//    @Binds
-//    fun bindPagingRepository(
-//        forumImpl: CharacterPagingRepositoryImpl,
-//    ): CharacterPagingRepository
-//
+    @Binds
+    fun bindCharacterRepository(
+        characterRepositoryImpl: CharacterRepositoryImpl,
+    ): CharacterRepository
+
+    @Binds
+    fun bindForumRepository(
+        forumImpl: ForumRepositoryImpl,
+    ): ForumRepository
+
+    @Binds
+    fun bindPagingRepository(
+        forumImpl: CharacterPagingRepositoryImpl,
+    ): CharacterPagingRepository
+
 
 }
