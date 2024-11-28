@@ -1,28 +1,31 @@
 package com.example.harry_potter_and_retrofit.presentation.ui.characterlistfragment
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.databinding.FragmentCharacterListBinding
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlin.math.log
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class CharacterListFragment : Fragment() {
 
-    private var _binding : FragmentCharacterListBinding? = null
+    private var _binding: FragmentCharacterListBinding? = null
     private val binding get() = _binding!!
     private lateinit var adatper: CharacterListAdapter
 
+    @Inject
+    lateinit var VMFactory: CharacterListViewModelFactory
+
+
     private val viewModel: CharacterListViewModel by viewModels {
-        CharacterListViewModelFactory()
+        VMFactory
     }
 
 
@@ -50,15 +53,14 @@ class CharacterListFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.isLoading.collect(){
+            viewModel.isLoading.collect() {
                 binding.swipeRefreshLayout.isRefreshing = it
             }
         }
     }
 
 
-
-    private fun iniRcView(){
+    private fun iniRcView() {
         adatper = CharacterListAdapter()
         binding.rcView.adapter = adatper
     }
@@ -67,7 +69,7 @@ class CharacterListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentCharacterListBinding.inflate(inflater,container,false)
+        _binding = FragmentCharacterListBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -5,9 +5,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
-import com.example.harry_potter_and_retrofit.domain.usecase.CacheCharactersListUseCase
 import com.example.harry_potter_and_retrofit.domain.usecase.GetCharacterListUseCase
-import com.example.harry_potter_and_retrofit.domain.usecase.UploadCharacterListUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -16,12 +15,14 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CharacterListViewModel(
+
+class CharacterListViewModel @Inject constructor(
 
     private val getCharacterListUseCase: GetCharacterListUseCase,
 
-) : ViewModel() {
+    ) : ViewModel() {
 
     private var _isLoading = MutableStateFlow(false)
     var isLoading = _isLoading.asStateFlow()

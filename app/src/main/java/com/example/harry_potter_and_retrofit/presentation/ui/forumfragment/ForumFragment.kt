@@ -12,21 +12,30 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.databinding.FragmentForumBinding
 import com.example.harry_potter_and_retrofit.presentation.ui.activities.MainActivity
 import com.example.harry_potter_and_retrofit.presentation.utils.MyScrollToBottomObserver
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ForumFragment : Fragment() {
 
-    private val viewModel: ForumViewModel by viewModels{
-        ForumViewModelFactory()
+
+    @Inject
+    lateinit var VMFactory: ForumViewModelFactory
+
+    private val viewModel: ForumViewModel by viewModels {
+        VMFactory
     }
 
     private var _binding: FragmentForumBinding? = null
     private val binding get() = _binding!!
     private lateinit var adatper: ForumAdapter
+
 
 
     private val openDocLauncher = registerForActivityResult(
@@ -45,8 +54,8 @@ class ForumFragment : Fragment() {
     private fun onImageSelected(uri: Uri) {
         Log.d("IAMGEE", "onImageSelected: $uri")
         val storage = Firebase.storage.getReference("/pictures")
-        storage.putFile(uri).addOnCompleteListener{ task ->
-            if (task.isSuccessful){
+        storage.putFile(uri).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
                 binding.etMessage.hint = "Всё ништяк"
             } else {
                 binding.etMessage.hint = "Всё плохо"
@@ -77,7 +86,7 @@ class ForumFragment : Fragment() {
             if (text.isNotBlank()) {
                 viewModel.sendTextToFirebaseDb(
                     text,
-                   )
+                )
             }
             binding.etMessage.text.clear()
         }

@@ -1,5 +1,7 @@
 package com.example.harry_potter_and_retrofit.presentation.ui.activities
 
+import android.app.NotificationManager
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -9,23 +11,29 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.harry_potter_and_retrofit.App
 import com.example.harry_potter_and_retrofit.R
-import com.example.harry_potter_and_retrofit.data.firebase.MessagingUtils
 import com.example.harry_potter_and_retrofit.databinding.ActivityMainWithDrawerBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainWithDrawerBinding
     private lateinit var navController: NavController
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainWithDrawerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        makeNotification("TEXT")
+
+
+
         App.INSTANCE.permissionsService.iniMainActivity(this)
         App.INSTANCE.permissionsService.checkPermissions()
 
-        initAuth()
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragment_container) as NavHostFragment
         navController = navHostFragment.navController
@@ -53,9 +61,15 @@ class MainActivity : AppCompatActivity() {
             return@setNavigationItemSelectedListener true
         }
 
-        MessagingUtils().logToken()
 
+    }
 
+    fun makeNotification(notificationContent: String) {
+        App.INSTANCE.notificationService.showNewNotification(
+            notificationContentText = notificationContent,
+            notificationTitle = "Caching",
+            channelImportance = NotificationManager.IMPORTANCE_MAX
+        )
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -63,19 +77,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun isDoneAuth() =
+        App.INSTANCE.firebaseInstance.authUtils.auth.currentUser != null
 
-
-
-    private fun initAuth() {
-        App.INSTANCE.firebaseInstance.initAuthUtils(this)
-    }
 
     private fun signUpIn() {
-        App.INSTANCE.firebaseInstance.authUtils.signUpIn()
+        if (!isDoneAuth()) {
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
-    private fun signOut() {
-        App.INSTANCE.firebaseInstance.authUtils.signOut()
+    fun signOut() {
+        App.INSTANCE.firebaseInstance.authUtils.authUI.signOut(this)
     }
+
 
 }

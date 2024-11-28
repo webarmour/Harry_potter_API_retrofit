@@ -3,9 +3,10 @@ package com.example.harry_potter_and_retrofit.data.mapper
 import com.example.harry_potter_and_retrofit.data.localdb.dbmodel.CharacterDbModel
 import com.example.harry_potter_and_retrofit.data.network.dto.CharacterDataTransferObject
 import com.example.harry_potter_and_retrofit.domain.model.CharacterItem
+import javax.inject.Inject
 
 
-class CharacterModelMapper {
+class CharacterModelMapper @Inject constructor(){
 
     fun characterModelDtoToCharacterModel(characterDto: CharacterDataTransferObject) =
         CharacterItem(
